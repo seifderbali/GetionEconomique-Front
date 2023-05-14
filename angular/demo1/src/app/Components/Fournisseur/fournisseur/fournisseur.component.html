@@ -1,0 +1,170 @@
+<div class="card my-5">
+  <div class="card-body">
+    <input type="text" [(ngModel)]="search" class="form-control" id="search" name="search" placeholder="Search.."
+           required #name="ngModel">
+    <td><button (click)="searchAction(search)" type="button" class="btn btn-primary" [disabled]="search.length==0">Search</button></td>
+
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">name</th>
+        <th scope="col">Code</th>
+        <th scope="col">Contact</th>
+        <th scope="col">Immat Fiscal</th>
+        <th scope="col">Mail</th>
+        <th scope="col">WebSite</th>
+        <th scope="col">Phone Number</th>
+
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let e of fournisseurs">
+        <td>{{ e.name }}</td>
+        <td>{{ e.code }}</td>
+        <td>{{ e.contact }}</td>
+        <td>{{ e.immatFiscal }}</td>
+        <td>{{ e.mail }}</td>
+        <td>{{ e.siteWeb }}</td>
+        <td>{{ e.tel }}</td>
+
+
+        <td><button (click)="deleteFournisseur(e.id)" type="button" class="btn btn-primary">DELETE</button></td>
+        <td><button  routerLink="/fournisseur" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="edit(e)">Update</button></td>
+        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal4" (click)="showContrat(e.id)">Show Contrats</button></td>
+
+      </tr>
+      </tbody>
+
+    </table>
+    <td><button routerLink="/addfournisseur" routerLinkActive="active" type="button" class="btn btn-primary">Create Fournisseur</button></td>
+
+  </div>
+
+
+
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update Fournissuer</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #updateForm="ngForm" (ngSubmit)="updateFournisseur()">
+            <div class="form-group">
+              <label for=name>Name :</label>
+              <input type="text" #address [(ngModel)]="fournisseur.name" name="name" id="name"
+                     class="form-control" placeholder="Name">
+            </div>
+            <div class="form-group">
+              <label for=name>code :</label>
+              <input type="text" #address [(ngModel)]="fournisseur.code" name="code" id="code"
+                     class="form-control" placeholder="Code">
+            </div>
+            <div class="form-group">
+              <label for=contact>Contact :</label>
+              <input type="text" #address [(ngModel)]="fournisseur.contact" name="contact" id="contact"
+                     class="form-control" placeholder="Contact">
+            </div>
+            <div class="form-group">
+              <label for=immatfiscal>Immat Fiscal :</label>
+              <input type="text" #address [(ngModel)]="fournisseur.immatFiscal" name="immatfiscal" id="immatfiscal"
+                     class="form-control" placeholder="Immat Fiscal">
+            </div>
+            <div class="form-group">
+              <label for=mail>Mail :</label>
+              <input type="mail" #address [(ngModel)]="fournisseur.mail" name="mail" id="mail"
+                     class="form-control" placeholder="Mail">
+            </div>
+            <div class="form-group">
+              <label for=siteweb>WebSite :</label>
+              <input type="text" #address [(ngModel)]="fournisseur.siteWeb" name="siteWeb" id="siteWeb"
+                     class="form-control" placeholder="WebSite">
+            </div>
+            <div class="form-group">
+              <label for=tel>Phone Number :</label>
+              <input type="text" #address [(ngModel)]="fournisseur.tel" name="tel" id="tel"
+                     class="form-control" placeholder="Phone Number">
+            </div>
+
+            <div class="form-group">
+              <input type="submit" value="Update" class="btn btn-primary w-100">
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel4">Update Projet</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+
+            <div class="card my-5">
+              <div class="card-body">
+
+                <tr *ngFor="let u of contrats">
+                  <h2>{{ u.reference }}</h2>
+                  <label>objetContrat :</label>
+                  <h4>{{ u.objetContrat }}</h4>
+                  <label>intituleProjet : </label>
+                  <h4>{{ u.intituleProjet }}</h4>
+                  <label>montantHT :</label>
+                  <h4>{{ u.montantHT }}</h4>
+                  <label>montantTTC : </label>
+                  <h4>{{ u.montantTTC }}</h4>
+                  <label>devise :</label>
+                  <h4>{{ u.devise }}</h4>
+                  <label>delaiGarantie :</label>
+                  <h4>{{ u.delaiGarantie }}</h4>
+                  <label>observation :</label>
+                  <h4>{{ u.observation }}</h4>
+                  <label>dateAcquisition :</label>
+                  <h4>{{ u.dateAcquisition}}</h4>
+                  <label>dateReceptionProvisoire :</label>
+                  <h4>{{ u.dateReceptionProvisoire }}</h4>
+                  <label>.dateReceptionDefinitive :</label>
+                  <h4>{{ u.dateReceptionDefinitive }}</h4>
+                  <div class="spacer"></div>
+                  <div class="spacer"></div>
+                  <div class="spacer"></div>
+                  <div class="spacer"></div>
+                  <div class="spacer"></div>
+                  <div class="spacer"></div>
+
+                </tr>
+
+
+              </div>
+              <div class="form-group">
+                <button type="button" class="btn btn-primary w-100" data-dismiss="modal">Close</button>
+
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+</div>

@@ -1,0 +1,136 @@
+<div class="spacer"></div>
+<div class="spacer"></div>
+
+
+<div class="card my-5">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">name</th>
+        <th scope="col">lastname</th>
+        <th scope="col">mail</th>
+        <th scope="col">direction</th>
+        <th scope="col">role</th>
+        <th scope="col">sexe</th>
+        <th scope="col">tel</th>
+        <th scope="col">address</th>
+        <th scope="col">birth date</th>
+        <th scope="col">place of birth</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let u of users">
+        <td>{{ u.name }}</td>
+        <td>{{ u.lastname }}</td>
+        <td>{{ u.mail }}</td>
+        <td>{{ u.direction }}</td>
+        <td>{{ u.role }}</td>
+        <td>{{ u.sexe }}</td>
+        <td>{{ u.tel }}</td>
+        <td>{{ u.address }}</td>
+        <td>{{ u.birthdate}}</td>
+        <td>{{ u.placeOfBirth }}</td>
+        <td><button (click)="deleteUser(u.id)" type="button" class="btn btn-primary">DELETE</button></td>
+        <td><button  routerLink="/user" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="edit(u)">Update</button></td>
+      </tr>
+      </tbody>
+
+    </table>
+    <td><button routerLink="/adduser" routerLinkActive="active" type="button" class="btn btn-primary">Create User</button></td>
+
+  </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update Forum</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #updateForm="ngForm" (ngSubmit)="updateUser()">
+            <div class="form-group">
+              <label for=name>Name :</label>
+              <input type="text" #address [(ngModel)]="user.name" name="name" id="name"
+                     class="form-control" placeholder="Name">
+            </div>
+            <div class="form-group">
+              <label for="lastname">LastName :</label>
+              <input type="text" #address [(ngModel)]="user.lastname" name="lastname" id="lastname"
+                     class="form-control" placeholder="LastName">
+            </div>
+            <div class="form-group">
+              <label for="mail">Mail :</label>
+              <input type="text" #address [(ngModel)]="user.mail" name="mail" id="mail"
+                     class="form-control" placeholder="Mail">
+            </div>
+            <div class="form-group">
+              <label for="password">Password :</label>
+              <input type="text" #address [(ngModel)]="user.password" name="password" id="password"
+                     class="form-control" placeholder="Password">
+            </div>
+            <div class="form-group">
+              <label for="direction">Direction :</label>
+              <input type="text" #address [(ngModel)]="user.direction" name="direction" id="direction"
+                     class="form-control" placeholder="Direction">
+            </div>
+            <div class="custom-select" style="width:200px;" >
+              <label>Role:</label>
+              <select [(ngModel)]="user.role" name="role">
+                <option *ngFor="let n of role">{{n}}</option>
+
+              </select>
+            </div>
+            <div class="custom-select" style="width:200px;" >
+              <label>Sexe:</label>
+              <select [(ngModel)]="user.sexe" name="sexe">
+                <option *ngFor="let n of sexe">{{n}}</option>
+
+              </select>
+            </div>
+            <div class="custom-select" style="width:200px;" >
+              <label>EntiteSI:</label>
+              <select [(ngModel)]="selected" name="entiteSI">
+                <option>Select EntiteSI</option>
+                <option *ngFor="let n of entiteSIs">{{n.name}}</option>
+
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="tel">Tel :</label>
+              <input type="text" #address [(ngModel)]="user.tel" name="tel" id="tel"
+                     class="form-control" placeholder="tel">
+            </div>
+            <div class="form-group">
+              <label for="address">Address :</label>
+              <input type="text" #address [(ngModel)]="user.address" name="address" id="address"
+                     class="form-control" placeholder="address">
+            </div>
+            <div class="form-group">
+              <label for="birthdate">Birthdate :</label>
+              <input type="date" #address [(ngModel)]="user.birthdate" name="birthdate" id="birthdate"
+                     class="form-control" placeholder="birthdate">
+            </div>
+            <div class="form-group">
+              <label for="placeofbirth">Place Of Birth :</label>
+              <input type="text" #address [(ngModel)]="user.placeOfBirth" name="placeofbirth" id="placeofbirth"
+                     class="form-control" placeholder="Place Of Birth">
+            </div>
+
+            <div class="form-group">
+              <input type="submit" value="Update" class="btn btn-primary w-100">
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+</div>

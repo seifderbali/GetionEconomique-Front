@@ -1,0 +1,40 @@
+
+
+
+<div class="card my-5">
+  <div class="card-body">
+    <form #voyageForm="ngForm">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" id="name" name="name"  placeholder="Name" [(ngModel)]="fournisseur.name" required>
+      </div>
+      <div class="form-group">
+        <label for="code">Code:</label>
+        <input type="text" class="form-control" id="code" name="code"  placeholder="Code" [(ngModel)]="fournisseur.code" required>
+      </div>
+      <div class="form-group">
+        <label for="contact">Contact:</label>
+        <input type="text" class="form-control" id="contact" name="contact"  placeholder="Contact" [(ngModel)]="fournisseur.contact" required>
+      </div>
+      <div class="form-group">
+        <label for="immatfiscal">Immat Fiscal:</label>
+        <input type="text" class="form-control" id="immatfiscal" name="immatfiscal"  placeholder="Immat Fiscal" [(ngModel)]="fournisseur.immatFiscal" required>
+      </div>
+      <div class="form-group">
+        <label for="mail">Mail:</label>
+        <input type="mail" class="form-control" id="mail" name="mail"  placeholder="Mail" [(ngModel)]="fournisseur.mail" required>
+      </div>
+      <div class="form-group">
+        <label for="siteweb">WebSite:</label>
+        <input type="text" class="form-control" id="siteweb" name="siteweb"  placeholder="WebSite" [(ngModel)]="fournisseur.siteWeb" required>
+      </div>
+      <div class="form-group">
+        <label for="tel">Phone Number:</label>
+        <input type="text" class="form-control" id="tel" name="tel"  placeholder="Phone Number" [(ngModel)]="fournisseur.tel" required>
+      </div>
+
+      <button type="button" routerLink="/fournisseur" routerLinkActive="active" class="btn btn-primary" (click)="onSubmit()" [disabled]="!voyageForm.form.valid">Submit</button>
+    </form>
+
+  </div>
+</div>

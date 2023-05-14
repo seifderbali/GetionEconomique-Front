@@ -1,0 +1,277 @@
+<div class="spacer"></div>
+<div class="spacer"></div>
+
+
+<div class="card my-5">
+  <div class="card-body">
+    <input type="text" [(ngModel)]="search" class="form-control" id="search" name="search" placeholder="Search.."
+           required #name="ngModel">
+    <td><button (click)="searchAction(search)" type="button" class="btn btn-primary" [disabled]="search.length==0">Search</button></td>
+
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">reference</th>
+        <th scope="col">objetContrat</th>
+        <th scope="col">intituleProjet</th>
+        <th scope="col">montantHT</th>
+        <th scope="col">montantTTC</th>
+        <th scope="col">devise</th>
+        <th scope="col">delaiGarantie</th>
+        <th scope="col">observation</th>
+        <th scope="col">dateAcquisition</th>
+        <th scope="col">dateReceptionProvisoire</th>
+        <th scope="col">dateReceptionDefinitive</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let u of contrats">
+        <td>{{ u.reference }}</td>
+        <td>{{ u.objetContrat }}</td>
+        <td>{{ u.intituleProjet }}</td>
+        <td>{{ u.montantHT }}</td>
+        <td>{{ u.montantTTC }}</td>
+        <td>{{ u.devise }}</td>
+        <td>{{ u.delaiGarantie }}</td>
+        <td>{{ u.observation }}</td>
+        <td>{{ u.dateAcquisition}}</td>
+        <td>{{ u.dateReceptionProvisoire }}</td>
+        <td>{{ u.dateReceptionDefinitive }}</td>
+        <td><button (click)="deleteContrat(u.id)" type="button" class="btn btn-primary">DELETE</button></td>
+        <td><button  routerLink="/contratDeMarche" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="edit(u)">Update</button></td>
+        <td><button  routerLink="/contratDeMarche" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal3" (click)="findBudget(u.id)">Budget</button></td>
+        <td><button  routerLink="/contratDeMarche" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal4" (click)="findFournisseur(u.id)">Fournisseur</button></td>
+      </tr>
+      </tbody>
+
+    </table>
+    <td><button routerLink="/addcontratDeMarche" routerLinkActive="active" type="button" class="btn btn-primary">add Contrat De Marche</button></td>
+
+  </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update Forum</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #updateForm="ngForm" (ngSubmit)="updateContratDeMarche()">
+            <div class="form-group">
+              <label for=reference>reference :</label>
+              <input type="text" #address [(ngModel)]="contrat.reference" name="reference" id="reference"
+                     class="form-control" placeholder="reference">
+            </div>
+            <div class="form-group">
+              <label for="objetContrat">objetContrat :</label>
+              <input type="text" #address [(ngModel)]="contrat.objetContrat" name="objetContrat" id="objetContrat"
+                     class="form-control" placeholder="objetContrat">
+            </div>
+            <div class="form-group">
+              <label for="intituleProjet">intituleProjet :</label>
+              <input type="text" #address [(ngModel)]="contrat.intituleProjet" name="intituleProjet" id="intituleProjet"
+                     class="form-control" placeholder="intituleProjet">
+            </div>
+            <div class="form-group">
+              <label for="montantHT">montantHT :</label>
+              <input type="text" #address [(ngModel)]="contrat.montantHT" name="montantHT" id="montantHT"
+                     class="form-control" placeholder="montantHT">
+            </div>
+            <div class="form-group">
+              <label for="montantTTC">montantTTC :</label>
+              <input type="text" #address [(ngModel)]="contrat.montantTTC" name="montantTTC" id="montantTTC"
+                     class="form-control" placeholder="montantTTC">
+            </div>
+            <div class="form-group">
+              <label for="devise">devise :</label>
+              <input type="text" #address [(ngModel)]="contrat.devise" name="devise" id="devise"
+                     class="form-control" placeholder="devise">
+            </div>
+            <div class="form-group">
+              <label for="delaiGarantie">delaiGarantie :</label>
+              <input type="date" #address [(ngModel)]="contrat.delaiGarantie" name="delaiGarantie" id="delaiGarantie"
+                     class="form-control" placeholder="delaiGarantie">
+            </div>
+            <div class="form-group">
+              <label for="observation">observation :</label>
+              <input type="text" #address [(ngModel)]="contrat.observation" name="observation" id="observation"
+                     class="form-control" placeholder="observation">
+            </div>
+            <div class="form-group">
+              <label for="dateAcquisition">dateAcquisition :</label>
+              <input type="date" #address [(ngModel)]="contrat.dateAcquisition" name="montantTTC" id="dateAcquisition"
+                     class="form-control" placeholder="montantTTC">
+            </div>
+            <div class="form-group">
+              <label for="dateReceptionProvisoire">dateReceptionProvisoire :</label>
+              <input type="date" #address [(ngModel)]="contrat.dateReceptionProvisoire" name="dateReceptionProvisoire" id="dateReceptionProvisoire"
+                     class="form-control" placeholder="dateReceptionProvisoire">
+            </div>
+            <div class="form-group">
+              <label for="dateReceptionDefinitive">dateReceptionDefinitive :</label>
+              <input type="date" #address [(ngModel)]="contrat.dateReceptionDefinitive" name="dateReceptionDefinitive" id="dateReceptionDefinitive"
+                     class="form-control" placeholder="dateReceptionDefinitive">
+            </div>
+
+
+
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+
+            <div class="form-group">
+              <input type="submit" value="Update" class="btn btn-primary w-100">
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel3">Budget Investissement</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label>Annee Budgetaire :</label>
+             <h2>{{budget.anneebudgetaire}} </h2>
+
+
+            </div>
+            <div class="form-group">
+              <label>Cout Etude Serv :</label>
+              <h2>{{budget.coutEtudeServ}} </h2>
+
+
+            </div>
+            <div class="form-group">
+              <label>Cout Logiciel :</label>
+              <h2>{{budget.coutLogiciel}} </h2>
+
+
+            </div>
+            <div class="form-group">
+              <label>Cout Materiel  :</label>
+              <h2>{{ budget.coutMateriel}} </h2>
+
+
+            </div>
+            <div class="form-group">
+              <label>Budget N :</label>
+              <h2>{{budget.budgetN}} </h2>
+
+
+            </div>
+            <div class="form-group">
+              <label>Budget N1 :</label>
+              <h2>{{budget.budgetN1}} </h2>
+
+
+            </div>
+            <div class="form-group">
+              <label>Budget N2 :</label>
+              <h2>{{budget.budgetN2}} </h2>
+
+
+            </div>
+            <div class="form-group">
+              <label>Budget N3 :</label>
+              <h2>{{ budget.budgetN3}} </h2>
+
+
+            </div>
+
+
+
+
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel4">Fournissuer</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label >Name :</label>
+              <h2>{{fournisseur.name}} </h2>
+
+            </div>
+            <div class="form-group">
+              <label >code :</label>
+              <h2>{{fournisseur.code}} </h2>
+
+            </div>
+            <div class="form-group">
+              <label>Contact :</label>
+              <h2>{{fournisseur.contact}} </h2>
+
+            </div>
+            <div class="form-group">
+              <label>Immat Fiscal :</label>
+              <h2>{{fournisseur.immatFiscal}} </h2>
+
+            </div>
+            <div class="form-group">
+              <label>Mail :</label>
+              <h2>{{fournisseur.mail}} </h2>
+
+            </div>
+            <div class="form-group">
+              <label>WebSite :</label>
+              <h2>{{fournisseur.siteWeb}} </h2>
+
+            </div>
+            <div class="form-group">
+              <label>Phone Number :</label>
+              <h2>{{fournisseur.tel}} </h2>
+
+            </div>
+
+
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>

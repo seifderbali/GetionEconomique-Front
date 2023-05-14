@@ -1,0 +1,15 @@
+
+
+
+<div class="card my-5">
+  <div class="card-body">
+    <form #voyageForm="ngForm">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" id="name" name="name"  placeholder="Name" [(ngModel)]="entiteSI.name" required>
+      </div>
+      <button type="button" routerLink="/entiteSI" routerLinkActive="active" class="btn btn-primary" (click)="onSubmit()" [disabled]="!voyageForm.form.valid">Submit</button>
+    </form>
+
+  </div>
+</div>

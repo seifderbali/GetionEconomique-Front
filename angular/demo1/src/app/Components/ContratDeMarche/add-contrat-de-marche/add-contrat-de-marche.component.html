@@ -1,0 +1,88 @@
+<div class="card my-5">
+  <div class="card-body">
+    <form #voyageForm="ngForm">
+      <div class="form-group">
+        <label for=reference>reference :</label>
+        <input type="text" #address [(ngModel)]="contrat.reference" name="reference" id="reference"
+               class="form-control" placeholder="reference">
+      </div>
+      <div class="form-group">
+        <label for="objetContrat">objetContrat :</label>
+        <input type="text" #address [(ngModel)]="contrat.objetContrat" name="objetContrat" id="objetContrat"
+               class="form-control" placeholder="objetContrat">
+      </div>
+      <div class="form-group">
+        <label for="intituleProjet">intituleProjet :</label>
+        <input type="text" #address [(ngModel)]="contrat.intituleProjet" name="intituleProjet" id="intituleProjet"
+               class="form-control" placeholder="intituleProjet">
+      </div>
+      <div class="form-group">
+        <label for="montantHT">montantHT :</label>
+        <input type="text" #address [(ngModel)]="contrat.montantHT" name="montantHT" id="montantHT"
+               class="form-control" placeholder="montantHT">
+      </div>
+      <div class="form-group">
+        <label for="montantTTC">montantTTC :</label>
+        <input type="text" #address [(ngModel)]="contrat.montantTTC" name="montantTTC" id="montantTTC"
+               class="form-control" placeholder="montantTTC">
+      </div>
+      <div class="form-group">
+        <label for="devise">devise :</label>
+        <input type="text" #address [(ngModel)]="contrat.devise" name="devise" id="devise"
+               class="form-control" placeholder="devise">
+      </div>
+      <div class="form-group">
+        <label for="delaiGarantie">delaiGarantie :</label>
+        <input type="date" #address [(ngModel)]="contrat.delaiGarantie" name="delaiGarantie" id="delaiGarantie"
+               class="form-control" placeholder="delaiGarantie">
+      </div>
+      <div class="form-group">
+        <label for="observation">observation :</label>
+        <input type="text" #address [(ngModel)]="contrat.observation" name="observation" id="observation"
+               class="form-control" placeholder="observation">
+      </div>
+      <div class="form-group">
+        <label for="dateAcquisition">dateAcquisition :</label>
+        <input type="date" #address [(ngModel)]="contrat.dateAcquisition" name="montantTTC" id="dateAcquisition"
+               class="form-control" placeholder="montantTTC">
+      </div>
+      <div class="form-group">
+        <label for="dateReceptionProvisoire">dateReceptionProvisoire :</label>
+        <input type="date" #address [(ngModel)]="contrat.dateReceptionProvisoire" name="dateReceptionProvisoire" id="dateReceptionProvisoire"
+               class="form-control" placeholder="dateReceptionProvisoire">
+      </div>
+      <div class="form-group">
+        <label for="dateReceptionDefinitive">dateReceptionDefinitive :</label>
+        <input type="date" #address [(ngModel)]="contrat.dateReceptionDefinitive" name="dateReceptionDefinitive" id="dateReceptionDefinitive"
+               class="form-control" placeholder="dateReceptionDefinitive">
+      </div>
+
+
+
+      <div class="custom-select" style="width:200px;" >
+        <label>Fournisseur:</label>
+        <select [(ngModel)]="selected" name="fournisseur">
+          <option>Select Fournisseur</option>
+          <option *ngFor="let n of fournisseurs">{{n.id+"/ "+ n.name}}</option>
+
+        </select>
+      </div>
+      <div class="custom-select" style="width:200px;" >
+        <label>Budget By ID:</label>
+        <select [(ngModel)]="selectedd" name="budget">
+          <option>Select Budget Investissement</option>
+          <option *ngFor="let n of budgets">{{n.id}}</option>
+
+        </select>
+      </div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+
+
+      <button type="button" routerLink="/contratDeMarche" routerLinkActive="active" class="btn btn-primary" (click)="onSubmit()" [disabled]="!voyageForm.form.valid">Submit</button>
+    </form>
+
+  </div>
+</div>

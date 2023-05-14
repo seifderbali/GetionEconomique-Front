@@ -1,0 +1,65 @@
+<div class="card my-5">
+  <div class="card-body">
+    <form #voyageForm="ngForm">
+      <h1>Comite Technique</h1>
+
+      <div class="form-group">
+        <label for="annee">annee:</label>
+        <input type="date" class="form-control" id="annee" name="annee"  placeholder="CodeProjet" [(ngModel)]="comite.annee" required>
+      </div>
+      <div class="form-group">
+        <label for="statutProjet">statutProjet:</label>
+        <input type="text" class="form-control" id="statutProjet" name="statutProjet"  placeholder="statutProjet" [(ngModel)]="comite.statutProjet" required>
+      </div>
+      <div class="form-group">
+        <label for="axeDemande">axeDemande:</label>
+        <input type="text" class="form-control" id="axeDemande" name="axeDemande"  placeholder="axeDemande " [(ngModel)]="comite.axeDemande" required>
+      </div>
+      <div class="form-group">
+        <label for="typeDemande">typeDemande :</label>
+        <input type="text" class="form-control" id="typeDemande" name="typeDemande"  placeholder="typeDemande" [(ngModel)]="comite.typeDemande" required>
+      </div>
+      <div class="form-group">
+        <label for="observationComite">observationComite :</label>
+        <input type="text" class="form-control" id="observationComite" name="observationComite"  placeholder="observationComite" [(ngModel)]="comite.observationComite" required>
+      </div>
+
+      <div class="custom-select" style="width:200px;" >
+        <label>EntiteSI:</label>
+        <select [(ngModel)]="selected" name="Projet">
+          <option>Select Projet</option>
+          <option *ngFor="let n of projets">{{n.id}}</option>
+
+        </select>
+      </div>
+      <h1>Date Validation</h1>
+      <div class="form-group">
+        <label for="validationCC">validationCC:</label>
+        <input type="date" class="form-control" id="validationCC" name="validationCC"  placeholder="validationCC" [(ngModel)]="dateValidation.validationCC" required>
+      </div>
+      <div class="form-group">
+        <label for="decisionComiteCC">decisionComiteCC:</label>
+        <input type="text" class="form-control" id="decisionComiteCC" name="decisionComiteCC"  placeholder="decisionComiteCC" [(ngModel)]="dateValidation.decisionComiteCC" required>
+      </div>
+      <div class="form-group">
+        <label for="validationTech">validationTech:</label>
+        <input type="date" class="form-control" id="validationTech" name="validationTech"  placeholder="validationTech" [(ngModel)]="dateValidation.validationTech" required>
+      </div>
+      <div class="form-group">
+        <label for="decisionComiteTech">decisionComiteTech:</label>
+        <input type="text" class="form-control" id="decisionComiteTech" name="decisionComiteTech"  placeholder="decisionComiteTech" [(ngModel)]="dateValidation.decisionComiteTech" required>
+      </div>
+      <div class="form-group">
+        <label for="validationTechFinanciaire">validationTechFinanciaire:</label>
+        <input type="date" class="form-control" id="validationTechFinanciaire" name="validationTechFinanciaire"  placeholder="validationTechFinanciaire" [(ngModel)]="dateValidation.validationTechFinanciaire" required>
+      </div>
+      <div class="form-group">
+        <label for="decisionComiteTechFin">decisionComiteTechFin:</label>
+        <input type="text" class="form-control" id="decisionComiteTechFin" name="decisionComiteTechFin"  placeholder="decisionComiteTechFin" [(ngModel)]="dateValidation.decisionComiteTechFin" required>
+      </div>
+      <button type="button" routerLink="/projets" routerLinkActive="active" class="btn btn-primary" (click)="onSubmit()" [disabled]="!voyageForm.form.valid">Submit</button>
+      <button type="button" routerLink="/projets" routerLinkActive="active" class="btn btn-primary" >Cancel</button>
+    </form>
+
+  </div>
+</div>

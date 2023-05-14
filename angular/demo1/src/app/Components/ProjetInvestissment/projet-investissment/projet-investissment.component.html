@@ -1,0 +1,270 @@
+<div class="card my-5">
+  <div class="card-body">
+    <input type="text" [(ngModel)]="search" class="form-control" id="search" name="search" placeholder="Search.."
+           required #name="ngModel">
+    <td><button (click)="searchAction(search)" type="button" class="btn btn-primary" [disabled]="search.length==0">Search</button></td>
+
+
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">codeProjet</th>
+        <th scope="col">intituleProjet</th>
+        <th scope="col">descriptionSomaire</th>
+        <th scope="col">categorie</th>
+        <th scope="col">classification</th>
+        <th scope="col">natureBesoin</th>
+        <th scope="col">type</th>
+        <th scope="col">quantite</th>
+        <th scope="col">prixUnitaireTTC</th>
+
+
+
+
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let e of projetInvestissments">
+        <td>{{ e.codeProjet }}</td>
+        <td>{{ e.intituleProjet }}</td>
+        <td>{{ e.descriptionSomaire }}</td>
+        <td>{{ e.categorie }}</td>
+        <td>{{ e.classification }}</td>
+        <td>{{ e.natureBesoin }}</td>
+        <td>{{ e.type }}</td>
+        <td>{{ e.quantite }}</td>
+        <td>{{ e.prixUnitaireTTC }}</td>
+
+
+
+
+        <td><button (click)="deleteProjet(e.id)" type="button" class="btn btn-primary">DELETE</button></td>
+        <td><button  routerLink="/projets" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="edit(e)">Update</button></td>
+        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1" (click)="findBudget(e.id)">Show Budget</button></td>
+      </tr>
+      </tbody>
+
+    </table>
+    <td><button routerLink="/addprojet" routerLinkActive="active" type="button" class="btn btn-primary">Create Project</button></td>
+
+  </div>
+
+
+
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update Projet</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #updateForm="ngForm" (ngSubmit)="updateProjet()">
+            <div class="form-group">
+              <label for=codeProjet>codeProjet :</label>
+              <input type="text" #address [(ngModel)]="projetInvestissment.codeProjet" name="codeProjet" id="codeProjet"
+                     class="form-control" placeholder="codeProjet">
+            </div>
+            <div class="form-group">
+              <label for=intituleProjet>intituleProjet :</label>
+              <input type="text" #address [(ngModel)]="projetInvestissment.intituleProjet" name="intituleProjet" id="intituleProjet"
+                     class="form-control" placeholder="intituleProjet">
+            </div>
+            <div class="form-group">
+              <label for=descriptionSomaire>descriptionSomaire :</label>
+              <input type="text" #address [(ngModel)]="projetInvestissment.descriptionSomaire" name="descriptionSomaire" id="descriptionSomaire"
+                     class="form-control" placeholder="descriptionSomaire">
+            </div>
+            <div class="form-group">
+              <label for=categorie>categorie :</label>
+              <input type="text" #address [(ngModel)]="projetInvestissment.categorie" name="categorie" id="categorie"
+                     class="form-control" placeholder="categorie">
+            </div>
+            <div class="form-group">
+              <label for=classification>classification :</label>
+              <input type="text" #address [(ngModel)]="projetInvestissment.classification" name="classification" id="classification"
+                     class="form-control" placeholder="classification">
+            </div>
+            <div class="form-group">
+              <label for=natureBesoin >natureBesoin  :</label>
+              <input type="text" #address [(ngModel)]="projetInvestissment.natureBesoin " name="natureBesoin" id="natureBesoin"
+                     class="form-control" placeholder="natureBesoin ">
+            </div>
+            <div class="form-group">
+              <label for=type>type :</label>
+              <input type="text" #address [(ngModel)]="projetInvestissment.type" name="type" id="type"
+                     class="form-control" placeholder="type">
+            </div>
+            <div class="form-group">
+              <label for=quantite>quantite :</label>
+              <input type="text" #address [(ngModel)]="projetInvestissment.quantite" name="quantite" id="quantite"
+                     class="form-control" placeholder="quantite">
+            </div>
+
+            <div class="form-group">
+            <label for=prixUnitaireTTC>prixUnitaireTTC :</label>
+            <input type="text" #address [(ngModel)]="projetInvestissment.prixUnitaireTTC" name="prixUnitaireTTC" id="prixUnitaireTTC"
+                   class="form-control" placeholder="prixUnitaireTTC">
+          </div>
+            <div class="form-group">
+              <input type="submit" value="Update" class="btn btn-primary w-100">
+              <button type="button" class="btn btn-primary w-100" data-dismiss="modal">Close</button>
+
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel1">BUDGET</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label>Annee Budgetaire :</label>
+              <h2>{{budget.anneebudgetaire}}</h2>
+
+            </div>
+            <div class="form-group">
+              <label>Cout Etude Serv :</label>
+              <h2>{{budget.coutEtudeServ}}</h2>
+
+
+            </div>
+            <div class="form-group">
+              <label>Cout Logiciel :</label>
+              <h2>{{budget.coutLogiciel}}</h2>
+
+            </div>
+            <div class="form-group">
+              <label>Cout Materiel  :</label>
+              <h2>{{budget.coutMateriel}}</h2>
+
+
+            </div>
+            <div class="form-group">
+              <label>Budget N :</label>
+              <h2>{{budget.budgetN}}</h2>
+
+            </div>
+            <div class="form-group">
+              <label>Budget N1 :</label>
+              <h2>{{budget.budgetN1}}</h2>
+
+
+            </div>
+            <div class="form-group">
+              <label>Budget N2 :</label>
+              <h2>{{budget.budgetN2}}</h2>
+
+            </div>
+            <div class="form-group">
+              <label>Budget N3 :</label>
+              <h2>{{budget.budgetN3}}</h2>
+
+            </div>
+            <div class="form-group">
+              <td><button  routerLink="/projets" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">Update</button></td>
+
+            </div>
+
+
+          </form>
+        </div>
+
+
+
+
+
+
+
+        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">Update Budget Investissement</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form #updateForm="ngForm" (ngSubmit)="updateBudgetInvestissement()">
+                  <div class="form-group">
+                    <label for=anneebudgetaire>Annee Budgetaire :</label>
+                    <input type="date" #address [(ngModel)]="budget.anneebudgetaire" name="anneebudgetaire" id="anneebudgetaire"
+                           class="form-control" placeholder="Annee Budgetaire">
+                  </div>
+                  <div class="form-group">
+                    <label for=coutetudeserv>Cout Etude Serv :</label>
+                    <input type="text" #address [(ngModel)]="budget.coutEtudeServ" name="coutetudeserv" id="coutetudeserv"
+                           class="form-control" coutetudeserv="Cout Etude Serv">
+                  </div>
+                  <div class="form-group">
+                    <label for=coutlogiciel>Cout Logiciel :</label>
+                    <input type="text" #address [(ngModel)]="budget.coutLogiciel" name="coutlogiciel" id="coutlogiciel"
+                           class="form-control" placeholder="Cout Logiciel">
+                  </div>
+                  <div class="form-group">
+                    <label for=coutmateriel>Cout Materiel  :</label>
+                    <input type="text" #address [(ngModel)]="budget.coutMateriel" name="coutmateriel" id="coutmateriel"
+                           class="form-control" placeholder="Cout Materiel">
+                  </div>
+                  <div class="form-group">
+                    <label for=budgetN>Budget N :</label>
+                    <input type="text" #address [(ngModel)]="budget.budgetN" name="budgetN" id="budgetN"
+                           class="form-control" placeholder="Budget N">
+                  </div>
+                  <div class="form-group">
+                    <label for=budgetN1>Budget N1 :</label>
+                    <input type="text" #address [(ngModel)]="budget.budgetN1" name="budgetN1" id="budgetN1"
+                           class="form-control" placeholder="Budget N1">
+                  </div>
+                  <div class="form-group">
+                    <label for=budgetN2>Budget N2 :</label>
+                    <input type="text" #address [(ngModel)]="budget.budgetN2" name="budgetN2" id="budgetN2"
+                           class="form-control" placeholder="Budget N2">
+                  </div>
+                  <div class="form-group">
+                    <label for=budgetN3>Budget N3 :</label>
+                    <input type="text" #address [(ngModel)]="budget.budgetN3" name="budgetN3" id="budgetN3"
+                           class="form-control" placeholder="Budget N3">
+                  </div>
+
+
+
+                  <div class="form-group">
+                    <input routerLink="/projets" routerLinkActive="active" type="submit" value="Update" class="btn btn-primary w-100">
+                  </div>
+
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+
+
+</div>

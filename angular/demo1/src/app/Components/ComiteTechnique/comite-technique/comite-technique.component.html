@@ -1,0 +1,238 @@
+<div class="spacer"></div>
+<div class="spacer"></div>
+
+
+<div class="card my-5">
+  <div class="card-body">
+    <input type="text" [(ngModel)]="search" class="form-control" id="search" name="search" placeholder="Search.."
+           required #name="ngModel">
+    <td><button (click)="searchAction(search)" type="button" class="btn btn-primary" [disabled]="search.length==0">Search</button></td>
+
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">statutProjet</th>
+        <th scope="col">annee</th>
+        <th scope="col">axeDemande</th>
+        <th scope="col">typeDemande</th>
+        <th scope="col">observationComite</th>
+
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let u of comites">
+        <td>{{ u.statutProjet }}</td>
+        <td>{{ u.annee }}</td>
+        <td>{{ u.axeDemande }}</td>
+        <td>{{ u.typeDemande }}</td>
+        <td>{{ u.observationComite }}</td>
+
+        <td><button (click)="deleteComite(u.id)" type="button" class="btn btn-primary">DELETE</button></td>
+        <td><button  routerLink="/comiteTechnique" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="edit(u)">Update</button></td>
+        <td><button  routerLink="/comiteTechnique" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal3" (click)="findDateValidation(u)">Date Validation</button></td>
+        <td><button  routerLink="/comiteTechnique" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal4" (click)="findprojet(u)">Projet</button></td>
+      </tr>
+      </tbody>
+
+    </table>
+    <td><button routerLink="/addcontratDeMarche" routerLinkActive="active" type="button" class="btn btn-primary">add Comite Technique</button></td>
+
+  </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update Forum</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #updateForm="ngForm" (ngSubmit)="updateComite()">
+            <div class="form-group">
+              <label for=annee>annee :</label>
+              <input type="date" #address [(ngModel)]="comite.annee" name="annee" id="annee"
+                     class="form-control" placeholder="annee">
+            </div>
+            <div class="form-group">
+              <label for="statutProjet">statutProjet :</label>
+              <input type="text" #address [(ngModel)]="comite.statutProjet" name="statutProjet" id="statutProjet"
+                     class="form-control" placeholder="statutProjet">
+            </div>
+            <div class="form-group">
+              <label for="axeDemande">axeDemande :</label>
+              <input type="text" #address [(ngModel)]="comite.axeDemande" name="axeDemande" id="axeDemande"
+                     class="form-control" placeholder="axeDemande">
+            </div>
+            <div class="form-group">
+              <label for="typeDemande">typeDemande :</label>
+              <input type="text" #address [(ngModel)]="comite.typeDemande" name="typeDemande" id="typeDemande"
+                     class="form-control" placeholder="typeDemande">
+            </div>
+            <div class="form-group">
+              <label for="observationComite">observationComite :</label>
+              <input type="text" #address [(ngModel)]="comite.observationComite" name="observationComite" id="observationComite"
+                     class="form-control" placeholder="observationComite">
+            </div>
+
+
+
+
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+
+            <div class="form-group">
+              <input type="submit" value="Update" class="btn btn-primary w-100">
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel3">Date Validation</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label>validationCC :</label>
+              <h2>{{datevalidation.validationCC}} </h2>
+
+
+            </div>
+            <div class="form-group">
+              <label>decisionComiteCC :</label>
+              <h2>{{datevalidation.decisionComiteCC}} </h2>
+
+
+            </div>
+            <div class="form-group">
+              <label>validationTech :</label>
+              <h2>{{datevalidation.validationTech}} </h2>
+
+
+            </div>
+            <div class="form-group">
+              <label>decisionComiteTech :</label>
+              <h2>{{ datevalidation.decisionComiteTech}} </h2>
+
+
+            </div>
+            <div class="form-group">
+              <label>validationTechFinanciaire  :</label>
+              <h2>{{datevalidation.validationTechFinanciaire}} </h2>
+
+
+            </div>
+            <div class="form-group">
+              <label>decisionComiteTechFin :</label>
+              <h2>{{datevalidation.decisionComiteTechFin}} </h2>
+            </div>
+
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel4"> Projet</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label>codeProjet :</label>
+              <h2>{{projet.id}}</h2>
+            </div>
+            <div class="form-group">
+              <label>intituleProjet :</label>
+              <h2>{{projet.intituleProjet}}</h2>
+
+
+            </div>
+            <div class="form-group">
+              <label>descriptionSomaire :</label>
+              <h2>{{projet.descriptionSomaire}}</h2>
+
+
+            </div>
+            <div class="form-group">
+              <label>categorie :</label>
+              <h2>{{projet.categorie}}</h2>
+
+            </div>
+            <div class="form-group">
+              <label>classification :</label>
+              <h2>{{projet.classification}}</h2>
+
+            </div>
+            <div class="form-group">
+              <label>natureBesoin  :</label>
+              <h2>{{projet.natureBesoin}}</h2>
+
+            </div>
+            <div class="form-group">
+              <label>type :</label>
+              <h2>{{projet.type}}</h2>
+
+            </div>
+            <div class="form-group">
+              <label>quantite :</label>
+              <h2>{{projet.quantite}}</h2>
+
+            </div>
+
+            <div class="form-group">
+              <label>prixUnitaireTTC :</label>
+              <h2>{{projet.prixUnitaireTTC}}</h2>
+
+            </div>
+            <div class="form-group">
+              <button type="button" class="btn btn-primary w-100" data-dismiss="modal">Close</button>
+
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+</div>
