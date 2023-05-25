@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ComiteTechnique} from "../../../Modules/ComiteTechnique";
-import {ProjetInvestissment} from "../../../Modules/ProjetInvestissment";
 import {DateValidation} from "../../../Modules/DateValidation";
 import {ComiteTechniqueService} from "../../../Services/ComiteTechniqueService/comite-technique.service";
-import {DateValidationService} from "../../../Services/DateValidationService/date-validation.service";
-import {ProjetInvestissmentService} from "../../../Services/ProjetInvestissmentService/projet-investissment.service";
+
+import {Budget} from "../../../Modules/Budget";
 
 @Component({
   selector: 'app-comite-technique',
@@ -17,15 +16,27 @@ export class ComiteTechniqueComponent implements OnInit {
   comites: ComiteTechnique[]=[];
   selected: string='seif';
   datevalidation:DateValidation =new DateValidation;
-  projet:ProjetInvestissment =new ProjetInvestissment;
-  constructor(private comiteTechniqueService: ComiteTechniqueService, private dateValidationService: DateValidationService,private projetService: ProjetInvestissmentService) { }
+  budget:Budget =new Budget;
+  selectedOption: string; // Declare the selectedOption variable
+
+
+  constructor(private comiteTechniqueService: ComiteTechniqueService) { }
 
   ngOnInit(): void {
-    this.comiteTechniqueService.findAll().subscribe(data => {
-      this.comites = data;
-    });
+    if(this.selectedOption=="Investissement"){
+      this.comiteTechniqueService.findAllInvestissement().subscribe(data => {
+        this.comites = data;
+      });
+
+    }
+    else if(this.selectedOption=="Maintenance"){
+      this.comiteTechniqueService.findAllMaintenance().subscribe(data => {
+        this.comites = data;
+      });
+    }
 
   }
+
   deleteComite(id:number){
     this.comiteTechniqueService.deleteComite(id).subscribe(()=>this.comiteTechniqueService.findAll().subscribe(data=>{this.comites=data}));
   }
@@ -41,12 +52,29 @@ export class ComiteTechniqueComponent implements OnInit {
   findDateValidation(comite: ComiteTechnique){
       this.datevalidation = comite.dateValidation;
   }
-  findprojet(comite: ComiteTechnique){
-      this.projet = comite.projetInvestissment;
+  findBudget(comite: ComiteTechnique){
+      this.budget = comite.budget;
    }
   searchAction(keyword: string){
+    if(this.selectedOption=="Investissement"){
+      this.comiteTechniqueService.searchInv(keyword).subscribe(data => {
+        this.comites = data;
+      });
+
+    }
+    else if(this.selectedOption=="Maintenance"){
+      this.comiteTechniqueService.searchMain(keyword).subscribe(data => {
+        this.comites = data;
+      });
+    }
+    else{
     this.comiteTechniqueService.search(keyword).subscribe(data => {
       this.comites = data;
     });
+    }
+  }
+  templateForm() {
+    console.log(this.selectedOption);
+    this.ngOnInit()
   }
 }

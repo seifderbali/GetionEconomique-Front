@@ -1,5 +1,5 @@
 import {EntiteSI} from "./EntiteSI";
-import {BudgetInvestissement} from "./BudgetInvestissement";
+import {Budget} from "./Budget";
 
 export class ProjetInvestissment {
   id !:number
@@ -13,5 +13,5 @@ export class ProjetInvestissment {
   quantite !:number
   prixUnitaireTTC !:number
   entiteSi !:EntiteSI
-  budget !:BudgetInvestissement
+  budget !:Budget
 }

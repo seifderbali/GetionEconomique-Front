@@ -14,8 +14,14 @@ export class ContatDeMarcheService {
   public findAll(): Observable<ContatDeMarche[]> {
     return this.http.get<ContatDeMarche[]>(this.baseUrl+"/displayContatDeMarche");
   }
+  public findAllMaintenance(): Observable<ContatDeMarche[]> {
+    return this.http.get<ContatDeMarche[]>(this.baseUrl+"/displayContatDeMarcheMaintenance");
+  }
   public save(contatDeMarche: ContatDeMarche, id: number, idd: number) {
     return this.http.post<ContatDeMarche>(this.baseUrl+"/addContatDeMarche/"+id+"/"+idd, contatDeMarche);
+  }
+  public saveMaintenance(contatDeMarche: ContatDeMarche, id: number, idd: number) {
+    return this.http.post<ContatDeMarche>(this.baseUrl+"/addContatDeMarcheMaintenance/"+id+"/"+idd, contatDeMarche);
   }
   deleteForumById(id:number){
     return this.http.delete(this.baseUrl+"/deleteContatDeMarche/"+id);
@@ -25,6 +31,12 @@ export class ContatDeMarcheService {
   }
   public search(keyword:string): Observable<ContatDeMarche[]> {
     return this.http.get<ContatDeMarche[]>(this.baseUrl+"/search/"+keyword);
+  }
+  public searchInv(keyword:string): Observable<ContatDeMarche[]> {
+    return this.http.get<ContatDeMarche[]>(this.baseUrl+"/searchInv/"+keyword);
+  }
+  public searchmain(keyword:string): Observable<ContatDeMarche[]> {
+    return this.http.get<ContatDeMarche[]>(this.baseUrl+"/searchMain/"+keyword);
   }
 
   public find(id:number): Observable<ContatDeMarche> {

@@ -1,0 +1,63 @@
+<div class="card my-5">
+  <div class="card-body">
+    <form #voyageForm="ngForm">
+      <h1>Budget De Maintenance</h1>
+
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+
+
+      <div class="custom-select" style="width:200px;" >
+        <label>EntiteSI:</label>
+        <select [(ngModel)]="selected" name="entiteSI">
+          <option>Select EntiteSI</option>
+          <option *ngFor="let n of entiteSIs">{{n.name}}</option>
+
+        </select>
+      </div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+
+      <div class="form-group">
+        <label for="libelle">libelle:</label>
+        <input type="text" class="form-control" id="libelle" name="libelle"  placeholder="libelle" [(ngModel)]="budget.libelle" required>
+      </div>
+      <div class="form-group">
+        <label for="anneebudgetaire">anneebudgetaire:</label>
+        <input type="date" class="form-control" id="anneebudgetaire" name="anneebudgetaire"  placeholder="anneebudgetaire" [(ngModel)]="budget.anneebudgetaire" required>
+      </div>
+      <div class="form-group">
+        <label for="coutLogiciel">coutLogiciel:</label>
+        <input type="text" class="form-control" id="coutLogiciel" name="coutLogiciel"  placeholder="coutLogiciel" [(ngModel)]="budget.coutLogiciel" required>
+      </div>
+      <div class="form-group">
+        <label for="coutMateriel">coutMateriel:</label>
+        <input type="text" class="form-control" id="coutMateriel" name="coutMateriel"  placeholder="coutMateriel" [(ngModel)]="budget.coutMateriel" required>
+      </div>
+      <div class="form-group">
+        <label for="coutEtudeServ">coutEtudeServ:</label>
+        <input type="text" class="form-control" id="coutEtudeServ" name="coutEtudeServ"  placeholder="coutEtudeServ" [(ngModel)]="budget.coutEtudeServ" required>
+      </div>
+      <div class="form-group">
+        <label for="budgetN">budgetN:</label>
+        <input type="text" class="form-control" id="budgetN" name="budgetN"  placeholder="budgetN" [(ngModel)]="budget.budgetN" required>
+      </div>
+      <div class="form-group">
+        <label for="budgetN1">budgetN1:</label>
+        <input type="text" class="form-control" id="budgetN1" name="budgetN1"  placeholder="budgetN1" [(ngModel)]="budget.budgetN1" required>
+      </div>
+      <div class="form-group">
+        <label for="budgetN2">budgetN2:</label>
+        <input type="text" class="form-control" id="budgetN2" name="budgetN2"  placeholder="budgetN2" [(ngModel)]="budget.budgetN2" required>
+      </div>
+      <div class="form-group">
+        <label for="budgetN3">budgetN3:</label>
+        <input type="text" class="form-control" id="budgetN3" name="budgetN3"  placeholder="budgetN3" [(ngModel)]="budget.budgetN3" required>
+      </div>
+      <button type="button" routerLink="/budgetMaintenance" routerLinkActive="active" class="btn btn-primary" (click)="onSubmit()" [disabled]="!voyageForm.form.valid">Submit</button>
+      <button type="button" routerLink="/budgetMaintenance" routerLinkActive="active" class="btn btn-primary" >Cancel</button>
+    </form>
+
+  </div>
+</div>

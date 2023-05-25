@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ProjetInvestissment} from "../../../Modules/ProjetInvestissment";
 import {ProjetInvestissmentService} from "../../../Services/ProjetInvestissmentService/projet-investissment.service";
-import {BudgetInvestissement} from "../../../Modules/BudgetInvestissement";
-import {BudgetInvestissementService} from "../../../Services/BudgetInvestissementService/budget-investissement.service";
+import {Budget} from "../../../Modules/Budget";
+import {BudgetService} from "../../../Services/BudgetService/budget.service";
 declare var $: any;
 
 @Component({
@@ -15,9 +15,9 @@ export class ProjetInvestissmentComponent implements OnInit {
   search:string="";
   projetInvestissment: ProjetInvestissment = new ProjetInvestissment;
   projetInvestissments: ProjetInvestissment[]=[];
-  budget:BudgetInvestissement = new BudgetInvestissement();
+  budget:Budget = new Budget;
 
-  constructor( private projetInvestissmentService: ProjetInvestissmentService,private budgetInvestissementService: BudgetInvestissementService) { }
+  constructor( private projetInvestissmentService: ProjetInvestissmentService,private budgetInvestissementService: BudgetService) { }
 
   ngOnInit(): void {
     this.projetInvestissmentService.findAll().subscribe(data => {
@@ -31,10 +31,8 @@ export class ProjetInvestissmentComponent implements OnInit {
   edit(projet: ProjetInvestissment){
     this.projetInvestissment = projet;
   }
-  findBudget(id: number){
-    this.projetInvestissmentService.findBudget(id).subscribe(data => {
-      this.budget = data;
-  });
+  findBudget(e: ProjetInvestissment){
+      this.budget = e.budget;
   }
   updateProjet(){
     this.projetInvestissmentService.updateProjetInvestissment(this.projetInvestissment).subscribe(
@@ -49,7 +47,7 @@ export class ProjetInvestissmentComponent implements OnInit {
     );
   }
   updateBudgetInvestissement(){
-    this.budgetInvestissementService.updateBudgetInvestissement(this.budget).subscribe(
+    this.budgetInvestissementService.updateBudget(this.budget).subscribe(
       (resp) => {
         console.log(resp);
       },

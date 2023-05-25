@@ -1,5 +1,5 @@
 import {DateValidation} from "./DateValidation";
-import {ProjetInvestissment} from "./ProjetInvestissment";
+import {Budget} from "./Budget";
 
 export class ComiteTechnique {
   id !:number
@@ -11,5 +11,5 @@ export class ComiteTechnique {
 
 
   dateValidation :DateValidation
-  projetInvestissment :ProjetInvestissment
+  budget :Budget
 }

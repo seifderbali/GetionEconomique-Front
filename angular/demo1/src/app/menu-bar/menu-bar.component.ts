@@ -2,12 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styles: [
-  ]
+  selector: 'app-menu-bar',
+  templateUrl: './menu-bar.component.html',
+  styleUrls: ['./menu-bar.component.scss']
 })
-export class MenuComponent implements OnInit {
+export class MenuBarComponent implements OnInit {
 
   constructor(private router: Router) { }
 
@@ -15,9 +14,8 @@ export class MenuComponent implements OnInit {
   }
   logOut() {
     localStorage.removeItem("id");
-    //localStorage.removeItem("token");
+    localStorage.removeItem("token");
+    localStorage.removeItem("mail");
     this.router.navigateByUrl('/');
-
   }
-
 }

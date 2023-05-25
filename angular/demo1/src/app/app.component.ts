@@ -8,4 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'stagetest';
   id = localStorage.getItem('id')
+  IsLoggedIn(){
+    return !!localStorage.getItem('id');
+  }
 }

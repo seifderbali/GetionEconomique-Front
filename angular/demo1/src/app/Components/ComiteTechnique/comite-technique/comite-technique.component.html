@@ -7,7 +7,16 @@
     <input type="text" [(ngModel)]="search" class="form-control" id="search" name="search" placeholder="Search.."
            required #name="ngModel">
     <td><button (click)="searchAction(search)" type="button" class="btn btn-primary" [disabled]="search.length==0">Search</button></td>
+    <form #myForm="ngForm" (submit)="templateForm()" novalidate>
+      <div class="custom-control custom-radio">
+        <input type="radio" name="option" value="Investissement" [(ngModel)]="selectedOption" [checked]=" 'checked' "> Investissement
+      </div>
+      <div class="custom-control custom-radio">
+        <input type="radio" name="option" value="Maintenance" [(ngModel)]="selectedOption"> Maintenance
+      </div>
+      <button type="submit" class="btn btn-primary">Type de Contrat</button>
 
+    </form><!-- Form ends -->
     <table class="table table-bordered table-striped">
       <thead class="thead-dark">
       <tr>
@@ -31,12 +40,12 @@
         <td><button (click)="deleteComite(u.id)" type="button" class="btn btn-primary">DELETE</button></td>
         <td><button  routerLink="/comiteTechnique" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="edit(u)">Update</button></td>
         <td><button  routerLink="/comiteTechnique" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal3" (click)="findDateValidation(u)">Date Validation</button></td>
-        <td><button  routerLink="/comiteTechnique" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal4" (click)="findprojet(u)">Projet</button></td>
+        <td><button  routerLink="/comiteTechnique" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal4" (click)="findBudget(u)">Budget</button></td>
       </tr>
       </tbody>
 
     </table>
-    <td><button routerLink="/addcontratDeMarche" routerLinkActive="active" type="button" class="btn btn-primary">add Comite Technique</button></td>
+    <td><button [routerLink]="['/addcomiteTechnique',selectedOption]" type="button" class="btn btn-primary" [disabled]="!selectedOption">add Comite Technique</button></td>
 
   </div>
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -164,7 +173,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel4"> Projet</h5>
+          <h5 class="modal-title" id="exampleModalLabel4">BUDGET</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -172,67 +181,58 @@
         <div class="modal-body">
           <form>
             <div class="form-group">
-              <label>codeProjet :</label>
-              <h2>{{projet.id}}</h2>
-            </div>
-            <div class="form-group">
-              <label>intituleProjet :</label>
-              <h2>{{projet.intituleProjet}}</h2>
-
+              <label>Annee Budgetaire :</label>
+              <h2>{{budget.anneebudgetaire}}</h2>
 
             </div>
             <div class="form-group">
-              <label>descriptionSomaire :</label>
-              <h2>{{projet.descriptionSomaire}}</h2>
+              <label>Cout Etude Serv :</label>
+              <h2>{{budget.coutEtudeServ}}</h2>
 
 
             </div>
             <div class="form-group">
-              <label>categorie :</label>
-              <h2>{{projet.categorie}}</h2>
+              <label>Cout Logiciel :</label>
+              <h2>{{budget.coutLogiciel}}</h2>
 
             </div>
             <div class="form-group">
-              <label>classification :</label>
-              <h2>{{projet.classification}}</h2>
+              <label>Cout Materiel  :</label>
+              <h2>{{budget.coutMateriel}}</h2>
+
 
             </div>
             <div class="form-group">
-              <label>natureBesoin  :</label>
-              <h2>{{projet.natureBesoin}}</h2>
+              <label>Budget N :</label>
+              <h2>{{budget.budgetN}}</h2>
 
             </div>
             <div class="form-group">
-              <label>type :</label>
-              <h2>{{projet.type}}</h2>
+              <label>Budget N1 :</label>
+              <h2>{{budget.budgetN1}}</h2>
+
 
             </div>
             <div class="form-group">
-              <label>quantite :</label>
-              <h2>{{projet.quantite}}</h2>
-
-            </div>
-
-            <div class="form-group">
-              <label>prixUnitaireTTC :</label>
-              <h2>{{projet.prixUnitaireTTC}}</h2>
+              <label>Budget N2 :</label>
+              <h2>{{budget.budgetN2}}</h2>
 
             </div>
             <div class="form-group">
-              <button type="button" class="btn btn-primary w-100" data-dismiss="modal">Close</button>
+              <label>Budget N3 :</label>
+              <h2>{{budget.budgetN3}}</h2>
 
             </div>
+            <div class="form-group">
+
+            </div>
+
 
           </form>
         </div>
 
+
+
+
+
       </div>
-    </div>
-  </div>
-
-
-
-
-
-
-</div>

@@ -50,6 +50,9 @@ export class AuthComponent implements OnInit {
 
           if (data.token!="PASSWD" && data.token!="UNKNOWN") {
             localStorage.setItem("id", data.id.toString());
+            localStorage.setItem("token", data.token.toString());
+            localStorage.setItem("mail", data.mail);
+
             this.sessionid=data.id.toString();
             this.router.navigateByUrl('/menu');
           }

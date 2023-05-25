@@ -9,8 +9,7 @@
 
 
 <div *ngIf="this.id !== null; else elseBlock">
-  <app-menu></app-menu>
-
+  <app-menu-bar></app-menu-bar>
 </div>
 <ng-template #elseBlock>
   <router-outlet></router-outlet>

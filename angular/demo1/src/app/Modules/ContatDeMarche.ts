@@ -1,4 +1,5 @@
-import {BudgetInvestissement} from "./BudgetInvestissement";
+import {Fournisseur} from "./Fournisseur";
+import {Budget} from "./Budget";
 
 export class ContatDeMarche {
   id !:number
@@ -13,4 +14,6 @@ export class ContatDeMarche {
   dateAcquisition !:Date
   dateReceptionProvisoire !:Date
   dateReceptionDefinitive !:Date
+  fournisseur : Fournisseur
+  budget : Budget
 }

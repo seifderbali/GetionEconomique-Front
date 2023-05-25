@@ -17,7 +17,6 @@ import { EntiteSIComponent } from './Components/EntiteSI/entite-si/entite-si.com
 import { FournisseurComponent } from './Components/Fournisseur/fournisseur/fournisseur.component';
 import { ProjetInvestissmentComponent } from './Components/ProjetInvestissment/projet-investissment/projet-investissment.component';
 import { UserComponent } from './Components/User/user/user.component';
-import { MenuComponent } from './menu/menu.component';
 import { AddUserComponent } from './Components/User/add-user/add-user.component';
 import { AddEntiteSIComponent } from './Components/EntiteSI/add-entite-si/add-entite-si.component';
 import { AddFournisseurComponent } from './Components/Fournisseur/add-fournisseur/add-fournisseur.component';
@@ -27,6 +26,14 @@ import {
 import { AddContratDeMarcheComponent } from './Components/ContratDeMarche/add-contrat-de-marche/add-contrat-de-marche.component';
 import { ContratDeMarcheComponent } from './Components/ContratDeMarche/contrat-de-marche/contrat-de-marche.component';
 import { AddComiteTechniqueComponent } from './Components/ComiteTechnique/add-comite-technique/add-comite-technique.component';
+import {
+  BudgetMaintenanceComponent
+} from "./Components/BudgetMaintenance/budget-maintenance/budget-maintenance.component";
+import { AddBudgetMaintenanceComponent } from './Components/BudgetMaintenance/add-budget-maintenance/add-budget-maintenance.component';
+import { ProfileComponent } from './Components/profile/profile.component';
+import { MenuBarComponent } from './menu-bar/menu-bar.component';
+import { DepenseComponent } from './Components/Depense/depense/depense.component';
+import { AddDepenseComponent } from './Components/Depense/add-depense/add-depense.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +48,6 @@ import { AddComiteTechniqueComponent } from './Components/ComiteTechnique/add-co
      FournisseurComponent,
      ProjetInvestissmentComponent,
      UserComponent,
-     MenuComponent,
      AddUserComponent,
      AddEntiteSIComponent,
     AddFournisseurComponent,
@@ -49,6 +55,12 @@ import { AddComiteTechniqueComponent } from './Components/ComiteTechnique/add-co
     AddContratDeMarcheComponent,
     ContratDeMarcheComponent,
     AddComiteTechniqueComponent,
+    BudgetMaintenanceComponent,
+    AddBudgetMaintenanceComponent,
+    ProfileComponent,
+    MenuBarComponent,
+    DepenseComponent,
+    AddDepenseComponent,
 
 
   ],

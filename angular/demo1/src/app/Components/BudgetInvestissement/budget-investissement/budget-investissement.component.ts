@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {BudgetInvestissement} from "../../../Modules/BudgetInvestissement";
-import {BudgetInvestissementService} from "../../../Services/BudgetInvestissementService/budget-investissement.service";
 import {EntiteSIService} from "../../../Services/EntiteSIService/entite-si.service";
 import {EntiteSI} from "../../../Modules/EntiteSI";
 import {ProjetInvestissment} from "../../../Modules/ProjetInvestissment";
 import {ContatDeMarcheService} from "../../../Services/ContatDeMarcheService/contat-de-marche.service";
 import {ContatDeMarche} from "../../../Modules/ContatDeMarche";
+import {BudgetService} from "../../../Services/BudgetService/budget.service";
+import {Budget} from "../../../Modules/Budget";
 
 @Component({
   selector: 'app-budget-investissement',
@@ -15,18 +15,18 @@ import {ContatDeMarche} from "../../../Modules/ContatDeMarche";
 export class BudgetInvestissementComponent implements OnInit {
 
   search:string="";
-  budgetInvestissement: BudgetInvestissement = new BudgetInvestissement;
-  budgetInvestissements: BudgetInvestissement[]=[];
+  budgetInvestissement: Budget = new Budget;
+  budgetInvestissements: Budget[]=[];
   selected: string='seif';
   entiteSIs:EntiteSI []=[];
   entiteSI:EntiteSI =new EntiteSI;
   projetInvestissment: ProjetInvestissment = new ProjetInvestissment;
   contrats: ContatDeMarche[]=[];
 
-  constructor(private budgetInvestissementService: BudgetInvestissementService,  private entiteSIService: EntiteSIService, private contratDeMarcheService: ContatDeMarcheService) { }
+  constructor(private budgetInvestissementService: BudgetService,  private entiteSIService: EntiteSIService, private contratDeMarcheService: ContatDeMarcheService) { }
 
   ngOnInit(): void {
-    this.budgetInvestissementService.findAll().subscribe(data => {
+    this.budgetInvestissementService.displayBudgetInvestissements().subscribe(data => {
       this.budgetInvestissements = data;
     });
     this.entiteSIService.findAll().subscribe(data => {
@@ -34,14 +34,14 @@ export class BudgetInvestissementComponent implements OnInit {
     });
   }
   deleteBudgetInvestissement(id:number){
-    this.budgetInvestissementService.deleteBudgetInvestissement(id).subscribe(()=>this.budgetInvestissementService.findAll().subscribe(data=>{this.budgetInvestissements=data}));
+    this.budgetInvestissementService.deleteBudget(id).subscribe(()=>this.budgetInvestissementService.displayBudgetInvestissements().subscribe(data=>{this.budgetInvestissements=data}));
   }
 
-  edit(budgetInvestissement: BudgetInvestissement){
+  edit(budgetInvestissement: Budget){
     this.budgetInvestissement = budgetInvestissement;
   }
   updateBudgetInvestissement(){
-    this.budgetInvestissementService.updateBudgetInvestissement(this.budgetInvestissement).subscribe(
+    this.budgetInvestissementService.updateBudget(this.budgetInvestissement).subscribe(
       (resp) => {
         console.log(resp);
       },
@@ -56,7 +56,7 @@ export class BudgetInvestissementComponent implements OnInit {
     if(this.selected != "Select EntiteSI")
     {
       this.entiteSIService.findByName(this.selected).subscribe(data => {
-        this.budgetInvestissementService.findByEntite(data.id).subscribe(dataa => {
+        this.budgetInvestissementService.findByEntiteInvestissement(data.id).subscribe(dataa => {
           this.budgetInvestissements = dataa;
         });
       });

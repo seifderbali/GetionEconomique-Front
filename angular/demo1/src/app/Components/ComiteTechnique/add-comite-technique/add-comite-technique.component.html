@@ -23,15 +23,31 @@
         <label for="observationComite">observationComite :</label>
         <input type="text" class="form-control" id="observationComite" name="observationComite"  placeholder="observationComite" [(ngModel)]="comite.observationComite" required>
       </div>
+      <ng-container *ngIf="selectedOption === 'Investissement'">
 
       <div class="custom-select" style="width:200px;" >
-        <label>EntiteSI:</label>
-        <select [(ngModel)]="selected" name="Projet">
-          <option>Select Projet</option>
-          <option *ngFor="let n of projets">{{n.id}}</option>
+        <label>Budgets Investissement:</label>
+        <select [(ngModel)]="selected" name="Budgets">
+          <option>Select Budget Investissement</option>
+          <option *ngFor="let n of budgets">{{n.id}}</option>
 
         </select>
       </div>
+      </ng-container>
+      <ng-container *ngIf="selectedOption === 'Maintenance'">
+        <div class="custom-select" style="width:200px;" >
+          <label>Budgets Maintenance:</label>
+          <select [(ngModel)]="selected" name="Budgets">
+            <option>Select Budget Maintenance</option>
+            <option *ngFor="let n of budgetMaintenances">{{n.id}}</option>
+          </select>
+        </div>
+      </ng-container>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+
+      <div class="spacer"></div>
+      <div class="spacer"></div>
       <h1>Date Validation</h1>
       <div class="form-group">
         <label for="validationCC">validationCC:</label>

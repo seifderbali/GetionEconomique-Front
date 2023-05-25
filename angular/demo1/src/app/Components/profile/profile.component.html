@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile</title>
+
+</head>
+<body>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<div class="profile">
+  <h1 class="profile-name">{{user.name}} {{user.lastname}}</h1>
+  <p class="profile-email">{{user.role}}</p>
+
+  <label>Mail :</label>
+  <h4>{{ user.mail }}</h4>
+  <label>tel :</label>
+  <h4>{{ user.tel }}</h4>
+  <label>Direction :</label>
+  <h4>{{ user.direction }}</h4>
+  <label>Address :</label>
+  <h4>{{ user.address }}</h4>
+  <label>BirthDate :</label>
+  <h4>{{ user.birthdate }}</h4>
+  <label>Place Of Birth :</label>
+  <h4>{{ user.placeOfBirth }}</h4>
+  <label>Sexe :</label>
+  <h4>{{ user.sexe }}</h4>
+  <label>EntiteSI :</label>
+  <h4>{{ user.entiteSI.name }}</h4>
+
+</div>
+</body>
+</html>

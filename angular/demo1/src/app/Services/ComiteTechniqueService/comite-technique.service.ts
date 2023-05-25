@@ -14,6 +14,12 @@ export class ComiteTechniqueService {
   public findAll(): Observable<ComiteTechnique[]> {
     return this.http.get<ComiteTechnique[]>(this.baseUrl+"/displayComiteTechnique");
   }
+  public findAllInvestissement(): Observable<ComiteTechnique[]> {
+    return this.http.get<ComiteTechnique[]>(this.baseUrl+"/displayComiteTechniqueInvestissement");
+  }
+  public findAllMaintenance(): Observable<ComiteTechnique[]> {
+    return this.http.get<ComiteTechnique[]>(this.baseUrl+"/displayComiteTechniqueMaintenance");
+  }
   public save(comiteTechnique: ComiteTechnique, id: number, idd:number) {
     return this.http.post<ComiteTechnique>(this.baseUrl+"/addComiteTechnique/"+id+"/"+idd, comiteTechnique);
   }
@@ -25,6 +31,12 @@ export class ComiteTechniqueService {
   }
   public search(keyword:string): Observable<ComiteTechnique[]> {
     return this.http.get<ComiteTechnique[]>(this.baseUrl+"/search/"+keyword);
+  }
+  public searchInv(keyword:string): Observable<ComiteTechnique[]> {
+    return this.http.get<ComiteTechnique[]>(this.baseUrl+"/searchInv/"+keyword);
+  }
+  public searchMain(keyword:string): Observable<ComiteTechnique[]> {
+    return this.http.get<ComiteTechnique[]>(this.baseUrl+"/searchMain/"+keyword);
   }
 
   public find(id:number): Observable<ComiteTechnique> {

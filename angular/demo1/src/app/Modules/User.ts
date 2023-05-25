@@ -1,3 +1,5 @@
+import {EntiteSI} from "./EntiteSI";
+
 export class User {
   id !:number
   password !:string
@@ -12,5 +14,6 @@ export class User {
   direction !:string
   role !:string
   token !:string
+  entiteSI :EntiteSI
 
 }

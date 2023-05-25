@@ -7,6 +7,17 @@
     <input type="text" [(ngModel)]="search" class="form-control" id="search" name="search" placeholder="Search.."
            required #name="ngModel">
     <td><button (click)="searchAction(search)" type="button" class="btn btn-primary" [disabled]="search.length==0">Search</button></td>
+    <form #myForm="ngForm" (submit)="templateForm()" novalidate>
+      <div class="custom-control custom-radio">
+        <input type="radio" name="option" value="Investissement" [(ngModel)]="selectedOption" [checked]=" 'checked' "> Investissement
+      </div>
+      <div class="custom-control custom-radio">
+        <input type="radio" name="option" value="Maintenance" [(ngModel)]="selectedOption"> Maintenance
+      </div>
+      <button type="submit" class="btn btn-primary">Type de Contrat</button>
+
+    </form><!-- Form ends -->
+
 
     <table class="table table-bordered table-striped">
       <thead class="thead-dark">
@@ -40,13 +51,13 @@
         <td>{{ u.dateReceptionDefinitive }}</td>
         <td><button (click)="deleteContrat(u.id)" type="button" class="btn btn-primary">DELETE</button></td>
         <td><button  routerLink="/contratDeMarche" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="edit(u)">Update</button></td>
-        <td><button  routerLink="/contratDeMarche" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal3" (click)="findBudget(u.id)">Budget</button></td>
-        <td><button  routerLink="/contratDeMarche" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal4" (click)="findFournisseur(u.id)">Fournisseur</button></td>
+        <td><button  routerLink="/contratDeMarche" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal3" (click)="findBudget(u)">Budget</button></td>
+        <td><button  routerLink="/contratDeMarche" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal4" (click)="findFournisseur(u)">Fournisseur</button></td>
       </tr>
       </tbody>
 
     </table>
-    <td><button routerLink="/addcontratDeMarche" routerLinkActive="active" type="button" class="btn btn-primary">add Contrat De Marche</button></td>
+    <td><button [routerLink]="['/addcontratDeMarche',selectedOption]" type="button" class="btn btn-primary" [disabled]="!selectedOption">add Contrat De Marche</button></td>
 
   </div>
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -150,6 +161,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+
         <div class="modal-body">
           <form>
             <div class="form-group">

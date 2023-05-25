@@ -1,0 +1,111 @@
+
+
+<body class="">
+<div class="wrapper ">
+  <div class="sidebar" data-color="white" data-active-color="danger">
+    <div class="logo">
+
+      <a href="https://www.creative-tim.com" class="simple-text logo-normal">
+        <div class="logo-image-big">
+          <img src="./assets/media/logos/background.jpg">
+        </div>
+      </a>
+    </div>
+    <div class="sidebar-wrapper">
+      <ul class="nav">
+        <li class="active ">
+          <a  routerLink="/entiteSI" routerLinkActive="active"  href="javascript:;">
+            <i class="nc-icon nc-bank"></i>
+            <p>EntiteSI</p>
+          </a>
+        </li>
+        <li class="active" >
+          <a routerLink="/user" routerLinkActive="active" href="javascript:; ">
+            <i class="nc-icon nc-circle-10"></i>
+            <p>Users</p>
+          </a>
+        </li>
+        <li class="active">
+          <a routerLink="/fournisseur" routerLinkActive="active" href="javascript:; ">
+            <i class="nc-icon nc-single-02"></i>
+            <p>Fournisseur</p>
+          </a>
+        </li>
+        <li class="active">
+          <a routerLink="/projets" routerLinkActive="active" href="javascript:; ">
+            <i class="nc-icon nc-ruler-pencil"></i>
+            <p>Projects</p>
+          </a>
+        </li>
+        <li class="active">
+          <a routerLink="/budgetInvestissement" routerLinkActive="active" href="javascript:; ">
+            <i class="nc-icon nc-money-coins"></i>
+            <p>Budget Investissement</p>
+          </a>
+        </li>
+        <li class="active">
+          <a routerLink="/budgetMaintenance" routerLinkActive="active" href="javascript:; ">
+            <i class="nc-icon nc-money-coins"></i>
+            <p>Budget Maintenance</p>
+          </a>
+        </li>
+        <li class="active">
+          <a routerLink="/contratDeMarche" routerLinkActive="active" href="javascript:; ">
+            <i class="nc-icon nc-single-copy-04"></i>
+            <p>Contrat De Marche</p>
+          </a>
+        </li>
+        <li class="active">
+          <a routerLink="/comiteTechnique" routerLinkActive="active" href="javascript:; ">
+            <i class="nc-icon nc-vector"></i>
+            <p>Comite Technique  </p>
+          </a>
+        </li>
+        <li class="active">
+          <a routerLink="/Depense" routerLinkActive="active" href="javascript:; ">
+            <i class="nc-icon nc-app"></i>
+            <p>Depense  </p>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+  <div class="main-panel" style="height: 100vh;">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navigation">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/profile" routerLinkActive="active">
+                <i class="nc-icon nc-badge"></i>
+                <span class="nav-text">Profile</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" (click)="logOut()" href="javascript:;">
+                <i class="nc-icon nc-button-power"></i>
+                <span class="nav-text">Logout</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- End Navbar -->
+
+
+
+    <router-outlet></router-outlet>
+  </div>
+
+</div>
+</body>
+
+

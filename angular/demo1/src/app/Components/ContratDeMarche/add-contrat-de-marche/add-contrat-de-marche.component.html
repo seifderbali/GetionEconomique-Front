@@ -67,6 +67,8 @@
 
         </select>
       </div>
+      <ng-container *ngIf="selectedOption === 'Investissement'">
+        <!-- Content to show when selectedOption is 'Maintenance' -->
       <div class="custom-select" style="width:200px;" >
         <label>Budget By ID:</label>
         <select [(ngModel)]="selectedd" name="budget">
@@ -75,6 +77,19 @@
 
         </select>
       </div>
+      </ng-container>
+      <ng-container *ngIf="selectedOption === 'Maintenance'">
+
+      <div class="custom-select" style="width:200px;" >
+        <label>Budget By ID:</label>
+        <select [(ngModel)]="selectedd" name="budget">
+          <option>Select Budget Maintenance</option>
+          <option *ngFor="let n of budgetMaintenances">{{n.id}}</option>
+
+        </select>
+      </div>
+      </ng-container>
+
       <div class="spacer"></div>
       <div class="spacer"></div>
       <div class="spacer"></div>

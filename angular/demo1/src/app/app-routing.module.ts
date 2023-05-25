@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule,Routes } from '@angular/router';
 import {AuthComponent} from "./Components/auth/auth.component";
 import {LoadingComponent} from "./Components/loading/loading.component";
-import {MenuComponent} from "./menu/menu.component";
 import {UserComponent} from "./Components/User/user/user.component";
 import {AddUserComponent} from "./Components/User/add-user/add-user.component";
 import {EntiteSIComponent} from "./Components/EntiteSI/entite-si/entite-si.component";
@@ -26,26 +25,44 @@ import {
   AddComiteTechniqueComponent
 } from "./Components/ComiteTechnique/add-comite-technique/add-comite-technique.component";
 import {ComiteTechniqueComponent} from "./Components/ComiteTechnique/comite-technique/comite-technique.component";
+import {AuthGuard} from "./shared/auth.guard";
+import {AlreadyLoggedInGuard} from "./shared/already-logged-in.guard";
+import {
+  BudgetMaintenanceComponent
+} from "./Components/BudgetMaintenance/budget-maintenance/budget-maintenance.component";
+import {
+  AddBudgetMaintenanceComponent
+} from "./Components/BudgetMaintenance/add-budget-maintenance/add-budget-maintenance.component";
+import {ProfileComponent} from "./Components/profile/profile.component";
+import {MenuBarComponent} from "./menu-bar/menu-bar.component";
+import {DepenseComponent} from "./Components/Depense/depense/depense.component";
+import {AddDepenseComponent} from "./Components/Depense/add-depense/add-depense.component";
 
 
 const routes: Routes = [
 
-  { path: '', component: LoadingComponent },
-  { path: 'menu', component: MenuComponent },
-  { path: 'login', component: AuthComponent },
-  { path: 'user', component: UserComponent },
-  { path: 'adduser', component: AddUserComponent },
-  { path: 'entiteSI', component: EntiteSIComponent },
-  { path: 'addEntiteSI', component: AddEntiteSIComponent },
-  { path: 'fournisseur', component: FournisseurComponent },
-  { path: 'addfournisseur', component: AddFournisseurComponent },
-  { path: 'budgetInvestissement', component: BudgetInvestissementComponent },
-  { path: 'addprojet', component: AddProjetInvestissementComponent },
-  { path: 'projets', component: ProjetInvestissmentComponent },
-  { path: 'contratDeMarche', component: ContratDeMarcheComponent },
-  { path: 'addcontratDeMarche', component: AddContratDeMarcheComponent },
-  { path: 'comiteTechnique', component: ComiteTechniqueComponent },
-  { path: 'addcomiteTechnique', component: AddComiteTechniqueComponent },
+  { path: '', component: LoadingComponent, canActivate: [AlreadyLoggedInGuard]  },
+  { path: 'menu', component: MenuBarComponent , canActivate:[AuthGuard] },
+  { path: 'login', component: AuthComponent, canActivate: [AlreadyLoggedInGuard]  },
+  { path: 'user', component: UserComponent , canActivate:[AuthGuard] },
+  { path: 'adduser', component: AddUserComponent , canActivate:[AuthGuard] },
+  { path: 'entiteSI', component: EntiteSIComponent , canActivate:[AuthGuard] },
+  { path: 'addEntiteSI', component: AddEntiteSIComponent , canActivate:[AuthGuard] },
+  { path: 'fournisseur', component: FournisseurComponent , canActivate:[AuthGuard] },
+  { path: 'addfournisseur', component: AddFournisseurComponent , canActivate:[AuthGuard] },
+  { path: 'budgetInvestissement', component: BudgetInvestissementComponent, canActivate:[AuthGuard]  },
+  { path: 'addprojet', component: AddProjetInvestissementComponent , canActivate:[AuthGuard] },
+  { path: 'projets', component: ProjetInvestissmentComponent , canActivate:[AuthGuard] },
+  { path: 'contratDeMarche', component: ContratDeMarcheComponent , canActivate:[AuthGuard] },
+  { path: 'addcontratDeMarche/:selectedOption', component: AddContratDeMarcheComponent , canActivate:[AuthGuard] },
+  { path: 'comiteTechnique', component: ComiteTechniqueComponent , canActivate:[AuthGuard] },
+  { path: 'addcomiteTechnique/:selectedOption', component: AddComiteTechniqueComponent , canActivate:[AuthGuard] },
+  { path: 'budgetMaintenance', component: BudgetMaintenanceComponent, canActivate:[AuthGuard]  },
+  { path: 'addbudgetMaintenance', component: AddBudgetMaintenanceComponent, canActivate:[AuthGuard]  },
+  { path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]  },
+  { path: 'Depense', component: DepenseComponent, canActivate:[AuthGuard]  },
+  { path: 'AddDepense', component: AddDepenseComponent, canActivate:[AuthGuard]  },
+
 
 ]
 @NgModule({

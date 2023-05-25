@@ -16,7 +16,6 @@ export class AuthService {
     return this.http.post<User>("http://localhost:8081/api/User/doLogin", et)
      .pipe(
         map(userData => {
-          localStorage.setItem("mail", et.mail);
           let tokenStr = "Bearer " + userData.token;
 
           return userData;
@@ -28,6 +27,8 @@ export class AuthService {
   logOut() {
     localStorage.removeItem("id");
     localStorage.removeItem("token");
+    localStorage.removeItem("mail");
+
   }
   /*
   public send(){
@@ -38,9 +39,9 @@ export class AuthService {
     console.log(!(user === null));
     return !(user === null);
   }
-
+*/
   IsLoggedIn(){
     return !!localStorage.getItem('id');
   }
-*/
+
 }

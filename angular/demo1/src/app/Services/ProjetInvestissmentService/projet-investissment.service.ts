@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ProjetInvestissment} from "../../Modules/ProjetInvestissment";
-import {BudgetInvestissement} from "../../Modules/BudgetInvestissement";
+import {Budget} from "../../Modules/Budget";
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +15,8 @@ export class ProjetInvestissmentService {
   public findAll(): Observable<ProjetInvestissment[]> {
     return this.http.get<ProjetInvestissment[]>(this.baseUrl+"/displayProjetInvestissment");
   }
-  public save(projetInvestissment: ProjetInvestissment,idd:number,id:number) {
-    return this.http.post<ProjetInvestissment>(this.baseUrl+"/addProjetInvestissment/"+idd+"/"+id, projetInvestissment);
+  public save(projetInvestissment: ProjetInvestissment, id:number) {
+    return this.http.post<ProjetInvestissment>(this.baseUrl+"/addProjetInvestissment/"+id, projetInvestissment);
   }
   deleteProjetInvestissment(id:number){
     return this.http.delete(this.baseUrl+"/deleteProjetInvestissment/"+id);
@@ -31,6 +31,4 @@ export class ProjetInvestissmentService {
   public find(id:number): Observable<ProjetInvestissment> {
     return this.http.get<ProjetInvestissment>(this.baseUrl+"/find/"+id);
   }
-  public findBudget(id:number): Observable<BudgetInvestissement> {
-    return this.http.get<BudgetInvestissement>(this.baseUrl+"/findBudget/"+id);
-  }}
+ }

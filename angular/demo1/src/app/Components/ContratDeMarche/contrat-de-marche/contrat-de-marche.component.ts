@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {ContatDeMarche} from "../../../Modules/ContatDeMarche";
 import {ContatDeMarcheService} from "../../../Services/ContatDeMarcheService/contat-de-marche.service";
 import {Fournisseur} from "../../../Modules/Fournisseur";
-import {BudgetInvestissement} from "../../../Modules/BudgetInvestissement";
 import {FournisseurService} from "../../../Services/FournisseurService/fournisseur.service";
-import {BudgetInvestissementService} from "../../../Services/BudgetInvestissementService/budget-investissement.service";
+import {Budget} from "../../../Modules/Budget";
+import {BudgetService} from "../../../Services/BudgetService/budget.service";
 
 
 @Component({
@@ -18,14 +18,25 @@ export class ContratDeMarcheComponent implements OnInit {
   contrats: ContatDeMarche[]=[];
   selected: string='seif';
   fournisseur:Fournisseur =new Fournisseur;
-  budget:BudgetInvestissement =new BudgetInvestissement;
-  constructor(private contratDeMarcheService: ContatDeMarcheService, private fournisseurService: FournisseurService,private budgetInvestissementService: BudgetInvestissementService) { }
+  budget:Budget =new Budget;
+  selectedOption: string; // Declare the selectedOption variable
+
+
+  constructor(private contratDeMarcheService: ContatDeMarcheService, private fournisseurService: FournisseurService,private budgetService: BudgetService) { }
 
   ngOnInit(): void {
+
+    if(this.selectedOption=="Investissement"){
     this.contratDeMarcheService.findAll().subscribe(data => {
       this.contrats = data;
     });
 
+    }
+  else if(this.selectedOption=="Maintenance"){
+      this.contratDeMarcheService.findAllMaintenance().subscribe(data => {
+        this.contrats = data;
+      });
+    }
   }
   deleteContrat(id:number){
     this.contratDeMarcheService.deleteForumById(id).subscribe(()=>this.contratDeMarcheService.findAll().subscribe(data=>{this.contrats=data}));
@@ -38,19 +49,35 @@ export class ContratDeMarcheComponent implements OnInit {
       this.contratDeMarcheService.updateForum(this.contrat).subscribe(result => this.ngOnInit());
 
   }
-  findBudget(id: number){
-    this.budgetInvestissementService.findByContrat(id).subscribe(data => {
-      this.budget = data;
-    });
+  findBudget(c: ContatDeMarche){
+
+      this.budget = c.budget;
+
   }
-  findFournisseur(id: number){
-    this.fournisseurService.findByContrat(id).subscribe(data => {
-      this.fournisseur = data;
-    });  }
+  findFournisseur(c : ContatDeMarche){
+      this.fournisseur = c.fournisseur;
+}
 
   searchAction(keyword: string){
+    if(this.selectedOption=="Investissement"){
+      this.contratDeMarcheService.searchInv(keyword).subscribe(data => {
+        this.contrats = data;
+      });
+
+    }
+    else if(this.selectedOption=="Maintenance"){
+      this.contratDeMarcheService.searchmain(keyword).subscribe(data => {
+        this.contrats = data;
+      });
+    }
+    else{
     this.contratDeMarcheService.search(keyword).subscribe(data => {
       this.contrats = data;
     });
+    }
+  }
+  templateForm() {
+    console.log(this.selectedOption);
+    this.ngOnInit()
   }
 }

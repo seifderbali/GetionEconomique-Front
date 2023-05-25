@@ -3,8 +3,8 @@ import {EntiteSI} from "../../../Modules/EntiteSI";
 import {EntiteSIService} from "../../../Services/EntiteSIService/entite-si.service";
 import {ProjetInvestissment} from "../../../Modules/ProjetInvestissment";
 import {ProjetInvestissmentService} from "../../../Services/ProjetInvestissmentService/projet-investissment.service";
-import {BudgetInvestissementService} from "../../../Services/BudgetInvestissementService/budget-investissement.service";
-import {BudgetInvestissement} from "../../../Modules/BudgetInvestissement";
+import {Budget} from "../../../Modules/Budget";
+import {BudgetService} from "../../../Services/BudgetService/budget.service";
 
 @Component({
   selector: 'app-add-projet-investissement',
@@ -13,18 +13,18 @@ import {BudgetInvestissement} from "../../../Modules/BudgetInvestissement";
 })
 export class AddProjetInvestissementComponent implements OnInit {
   projet: ProjetInvestissment = new ProjetInvestissment;
-  budget: BudgetInvestissement = new BudgetInvestissement;
+  budget: Budget = new Budget;
   projets: ProjetInvestissment []=[];
 
   sexe=['Male','Female'];
   role=['User','Manager','Admin'];
   selected: string='seif';
   entiteSIs:EntiteSI []=[];
-  budgets:BudgetInvestissement []=[];
+  budgets:Budget []=[];
 
   entiteSI:EntiteSI =new EntiteSI;
 
-  constructor(private projetService: ProjetInvestissmentService, private budgetService: BudgetInvestissementService, private entiteSIService: EntiteSIService) { }
+  constructor(private projetService: ProjetInvestissmentService, private budgetService: BudgetService, private entiteSIService: EntiteSIService) { }
 
   ngOnInit(): void {
     this.projetService.findAll().subscribe(data => {
@@ -35,11 +35,12 @@ export class AddProjetInvestissementComponent implements OnInit {
     });
   }
   onSubmit() {
-    this.budgetService.save(this.budget).subscribe(datas => {
       this.entiteSIService.findByName(this.selected).subscribe(dataa => {
-      this.budgetService.findAll().subscribe(data => {
+        this.budgetService.addBudgetInvestissement(this.budget,dataa.id).subscribe(datas => {
+
+          this.budgetService.displayBudgetInvestissements().subscribe(data => {
         this.budgets = data;
-        this.projetService.save(this.projet,dataa.id,data[data.length-1].id).subscribe(result => this.ngOnInit());
+        this.projetService.save(this.projet,data[data.length-1].id).subscribe(result => this.ngOnInit());
 
       });
       });

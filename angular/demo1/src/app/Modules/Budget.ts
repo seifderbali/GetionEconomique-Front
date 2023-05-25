@@ -1,5 +1,8 @@
-export class BudgetInvestissement {
+import {EntiteSI} from "./EntiteSI";
+
+export class Budget {
   id !:number
+  libelle !:string
   anneebudgetaire !:string
   coutLogiciel !:string
   coutMateriel !:string
@@ -8,4 +11,5 @@ export class BudgetInvestissement {
   budgetN1 !:string
   budgetN2 !:string
   budgetN3 !:string
+  entiteSI :EntiteSI
 }

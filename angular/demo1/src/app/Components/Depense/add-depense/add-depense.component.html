@@ -1,0 +1,109 @@
+<div class="card my-5">
+  <div class="card-body">
+    <form #voyageForm="ngForm">
+      <h1>Depenseq</h1>
+
+      <div class="form-group">
+        <label for="numFacture">numFacture:</label>
+        <input type="text" class="form-control" id="numFacture" name="numFacture"  placeholder="numFacture" [(ngModel)]="depense.numFacture" required>
+      </div>
+      <div class="form-group">
+        <label for="objetFacture">objetFacture:</label>
+        <input type="text" class="form-control" id="objetFacture" name="objetFacture"  placeholder="objetFacture" [(ngModel)]="depense.objetFacture" required>
+      </div>
+      <div class="form-group">
+        <label for="dateInsertion">dateInsertion:</label>
+        <input type="date" class="form-control" id="dateInsertion" name="dateInsertion"  placeholder="dateInsertion " [(ngModel)]="depense.dateInsertion" required>
+      </div>
+      <div class="form-group">
+        <label for="devise">devise :</label>
+        <input type="text" class="form-control" id="devise" name="devise"  placeholder="devise" [(ngModel)]="depense.devise" required>
+      </div>
+      <div class="form-group">
+        <label for="montantFactureTND">montantFactureTND :</label>
+        <input type="text" class="form-control" id="montantFactureTND" name="montantFactureTND"  placeholder="montantFactureTND" [(ngModel)]="depense.montantFactureTND" required>
+      </div>
+      <div class="form-group">
+        <label for="description">description :</label>
+        <input type="text" class="form-control" id="description" name="description"  placeholder="description" [(ngModel)]="depense.description" required>
+      </div>
+      <div class="form-group">
+        <label for="statutFacture">statutFacture :</label>
+        <input type="text" class="form-control" id="statutFacture" name="statutFacture"  placeholder="statutFacture" [(ngModel)]="depense.statutFacture" required>
+      </div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+
+        <div class="custom-select" style="width:200px;" >
+          <label>Contrats :</label>
+          <select [(ngModel)]="selected" name="Contrats">
+            <option>Select contrat </option>
+            <option *ngFor="let n of contrats">{{n.id}}</option>
+
+          </select>
+        </div>
+
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+
+
+      <h1>Suive Facture</h1>
+      <div class="form-group">
+        <label for="dateReceptionDCD">dateReceptionDCD:</label>
+        <input type="date" class="form-control" id="dateReceptionDCD" name="dateReceptionDCD"  placeholder="dateReceptionDCD" [(ngModel)]="facture.dateReceptionDCD" required>
+      </div>
+      <div class="form-group">
+        <label for="dateEnvoiDirectionSupportMaintenance">dateEnvoiDirectionSupportMaintenance:</label>
+        <input type="date" class="form-control" id="dateEnvoiDirectionSupportMaintenance" name="dateEnvoiDirectionSupportMaintenance"  placeholder="dateEnvoiDirectionSupportMaintenance" [(ngModel)]="facture.dateEnvoiDirectionSupportMaintenance" required>
+      </div>
+      <div class="form-group">
+        <label for="dateRetourDirectionSupportMaintenance">dateRetourDirectionSupportMaintenance:</label>
+        <input type="date" class="form-control" id="dateRetourDirectionSupportMaintenance" name="dateRetourDirectionSupportMaintenance"  placeholder="dateRetourDirectionSupportMaintenance" [(ngModel)]="facture.dateRetourDirectionSupportMaintenance" required>
+      </div>
+      <div class="form-group">
+        <label for="dateValidationChefDepartement">dateValidationChefDepartement:</label>
+        <input type="date" class="form-control" id="dateValidationChefDepartement" name="dateValidationChefDepartement"  placeholder="dateValidationChefDepartement" [(ngModel)]="facture.dateValidationChefDepartement" required>
+      </div>
+      <div class="form-group">
+        <label for="dateRetourValidationChefDepartement">dateRetourValidationChefDepartement:</label>
+        <input type="date" class="form-control" id="dateRetourValidationChefDepartement" name="dateRetourValidationChefDepartement"  placeholder="dateRetourValidationChefDepartement" [(ngModel)]="facture.dateRetourValidationChefDepartement" required>
+      </div>
+      <div class="form-group">
+        <label for="dateIncidentFournisseur">dateIncidentFournisseur:</label>
+        <input type="date" class="form-control" id="dateIncidentFournisseur" name="dateIncidentFournisseur"  placeholder="dateIncidentFournisseur" [(ngModel)]="facture.dateIncidentFournisseur" required>
+      </div>
+
+      <div class="form-group">
+        <label for="dateRegularizationFournisseur">dateRegularizationFournisseur:</label>
+        <input type="date" class="form-control" id="dateRegularizationFournisseur" name="dateRegularizationFournisseur"  placeholder="dateRegularizationFournisseur" [(ngModel)]="facture.dateRegularizationFournisseur" required>
+      </div>
+
+      <div class="form-group">
+        <label for="dateEnvoiAssurance">dateEnvoiAssurance:</label>
+        <input type="date" class="form-control" id="dateEnvoiAssurance" name="dateEnvoiAssurance"  placeholder="dateEnvoiAssurance" [(ngModel)]="facture.dateEnvoiAssurance" required>
+      </div>
+      <div class="form-group">
+        <label for="dateOrdonnancementDCD">dateOrdonnancementDCD:</label>
+        <input type="date" class="form-control" id="dateOrdonnancementDCD" name="dateOrdonnancementDCD"  placeholder="dateOrdonnancementDCD" [(ngModel)]="facture.dateOrdonnancementDCD" required>
+      </div>
+      <div class="form-group">
+        <label for="dateRetourDCD">dateRetourDCD:</label>
+        <input type="date" class="form-control" id="dateRetourDCD" name="dateRetourDCD"  placeholder="dateRetourDCD" [(ngModel)]="facture.dateRetourDCD" required>
+      </div>
+      <div class="form-group">
+        <label for="Date2OrdonnancementDCD">Date2OrdonnancementDCD:</label>
+        <input type="date" class="form-control" id="Date2OrdonnancementDCD" name="Date2OrdonnancementDCD"  placeholder="Date2OrdonnancementDCD" [(ngModel)]="facture.Date2OrdonnancementDCD" required>
+      </div>
+      <button type="button" routerLink="/Depense" routerLinkActive="active" class="btn btn-primary" (click)="onSubmit()" [disabled]="!voyageForm.form.valid">Submit</button>
+      <button type="button" routerLink="/Depense" routerLinkActive="active" class="btn btn-primary" >Cancel</button>
+    </form>
+
+  </div>
+</div>
