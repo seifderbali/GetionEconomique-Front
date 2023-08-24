@@ -1,0 +1,17 @@
+<div class="transactions">
+  <div class="title">Last few Projects</div>
+  <div class="transaction-wrapper">
+    <div class="transaction" *ngFor="let projet of projetInvestissments">
+
+      <div class="title">{{ projet.intituleProjet }}</div>
+      <div class="price">{{ projet.descriptionSomaire }}</div>
+      <div class="shop-location">
+        <div class="shop">{{ projet.quantite }}</div>
+        <div class="location">Unite</div>
+      </div>
+      <div class="status">
+        {{ projet.prixUnitaireTTC }} DT
+      </div>
+    </div>
+  </div>
+</div>

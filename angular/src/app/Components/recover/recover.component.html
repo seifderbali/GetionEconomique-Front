@@ -1,0 +1,140 @@
+
+<div class="spacer"></div>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<!--begin::Content-->
+<div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
+  <div class="center">
+    <a routerLink="/" class="mb-12"><div class="centre"></div><img alt="Logo" src="./assets/media/logos/background2.png" class="h-100px "/></a>
+  </div>
+
+
+  <div class="spacer"></div>
+  <div class="spacer"></div>
+  <div class="spacer"></div>
+  <div class="spacer"></div>
+  <div class="spacer"></div>
+  <div class="spacer"></div>
+  <div class="spacer"></div>
+  <div class="spacer"></div>
+
+  <div class="spacer"></div>
+
+  <!--begin::Content body-->
+  <div class="w-lg-500px bg-white rounded shadow-sm p-10 p-lg-15 mx-auto">
+
+
+    <div style="width:300px; margin:0 auto;">
+
+      <!--begin::Form-->
+      <form
+        class="form w-100"
+        novalidate="novalidate"
+      >
+        <div class="spacer"></div>
+        <div class="spacer"></div>
+        <div class="spacer"></div>
+        <div class="spacer"></div>
+        <div class="spacer"></div>
+        <div class="spacer"></div>
+
+        <!--begin::Heading-->
+        <div class="text-center mb-10">
+          <h1 class="text-dark mb-3">Sign In </h1>
+
+        </div>
+        <!--end::Heading-->
+
+        <div class="spacer"></div>
+
+
+        <!--begin::Form group-->
+        <div class="form-group">
+          <label class="form-label fs-6 fw-bolder text-dark" for="mail">Mail:</label>
+          <input type="email" class="form-control form-control-lg form-control-solid" id="mail" name="mail"  placeholder="mail" [(ngModel)]="user" required>
+        </div>
+        <!--begin::Form group-->
+
+
+
+
+        <!--end::Form group-->
+        <div class="spacer"></div>
+        <div class="spacer"></div>
+        <div class="spacer"></div>
+        <div class="spacer"></div>
+        <div class="spacer"></div>
+        <div class="spacer"></div>
+        <div class="spacer"></div>
+
+
+
+        <!--end::Form group-->
+
+
+
+        <!--end::Form group-->
+
+        <!--begin::Action-->
+        <div class="text-center">
+          <div class="spacer"></div>
+
+
+          <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" [(ngModel)]="captchaValue" name="captcha"></ngx-recaptcha2>
+
+          <button type="button" class="btn btn-lg w-100 mb-5" style="background-color:#013088; border-color:black; color:white" (click)="onSubmit()" [disabled]="!captchaValue">Submit</button>
+
+          <a routerLink="/login" routerLinkActive="active" href="javascript:;">Recover</a>
+
+          <!-- begin::Separator  -->
+
+          <!-- end::Separator  -->
+
+
+        </div>
+        <!--end::Action-->
+      </form>
+      <!--end::Form-->
+
+
+
+
+
+
+    </div>
+    <!--end::Content body-->
+  </div>
+  <!--end::Content-->
+
+
+</div>
+
+
+
+<div class="spacer"></div>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<div class="spacer"></div>
+
+
+<!--Waves Container-->
+<div style="padding-top: 22px">
+  <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+       viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <defs>
+      <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+    </defs>
+    <g class="parallax">
+      <use xlink:href="#gentle-wave" x="48" y="0" fill="rgb(135,206,250)" />
+      <use xlink:href="#gentle-wave" x="48" y="3" fill="rgb(30,144,255)" />
+      <use xlink:href="#gentle-wave" x="48" y="5" fill="rgb(65,105,225)" />
+      <use xlink:href="#gentle-wave" x="48" y="7" fill="blue" />
+    </g>
+  </svg>
+</div>

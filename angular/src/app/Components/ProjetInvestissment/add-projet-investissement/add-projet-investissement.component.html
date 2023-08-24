@@ -1,0 +1,93 @@
+<div class="card my-5">
+  <div class="card-body">
+    <form #voyageForm="ngForm">
+      <h1>Projet</h1>
+
+      <div class="form-group">
+        <label for="CodeProjet">CodeProjet:</label>
+        <input type="text" class="form-control" id="CodeProjet" name="CodeProjet"  placeholder="CodeProjet" [(ngModel)]="projet.codeProjet" required>
+      </div>
+      <div class="form-group">
+        <label for="intituleProjet">intituleProjet:</label>
+        <input type="text" class="form-control" id="intituleProjet" name="intituleProjet"  placeholder="intituleProjet" [(ngModel)]="projet.intituleProjet" required>
+      </div>
+      <div class="form-group">
+        <label for="descriptionSomaire">description Somaire:</label>
+        <input type="text" class="form-control" id="descriptionSomaire" name="descriptionSomaire"  placeholder="description Somaire" [(ngModel)]="projet.descriptionSomaire" required>
+      </div>
+      <div class="form-group">
+        <label for="categorie">Categorie :</label>
+        <input type="text" class="form-control" id="categorie" name="categorie"  placeholder="categorie" [(ngModel)]="projet.categorie" required>
+      </div>
+      <div class="form-group">
+        <label for="classification">classification :</label>
+        <input type="text" class="form-control" id="classification" name="classification"  placeholder="classification" [(ngModel)]="projet.classification" required>
+      </div>
+      <div class="form-group">
+        <label for="natureBesoin">natureBesoin :</label>
+        <input type="text" class="form-control" id="natureBesoin" name="natureBesoin"  placeholder="natureBesoin" [(ngModel)]="projet.natureBesoin" required>
+      </div>
+      <div class="form-group">
+        <label for="type">type :</label>
+        <input type="text" class="form-control" id="type" name="type"  placeholder="type" [(ngModel)]="projet.type" required>
+      </div>
+      <div class="form-group">
+        <label for="quantite">quantite :</label>
+        <input type="text" class="form-control" id="quantite" name="quantite"  placeholder="quantite" [(ngModel)]="projet.quantite" required>
+      </div>
+      <div class="form-group">
+        <label for="prixUnitaireTTC">prixUnitaireTTC :</label>
+        <input type="text" class="form-control" id="prixUnitaireTTC" name="prixUnitaireTTC"  placeholder="prixUnitaireTTC" [(ngModel)]="projet.prixUnitaireTTC" required>
+      </div>
+
+      <div class="custom-select" style="width:200px;" >
+        <label>EntiteSI:</label>
+        <select [(ngModel)]="selected" name="entiteSI">
+          <option>Select EntiteSI</option>
+          <option *ngFor="let n of entiteSIs">{{n.name}}</option>
+
+        </select>
+      </div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+
+      <h1>Budget</h1>
+      <div class="form-group">
+        <label for="anneebudgetaire">anneebudgetaire:</label>
+        <input type="date" class="form-control" id="anneebudgetaire" name="anneebudgetaire"  placeholder="anneebudgetaire" [(ngModel)]="budget.anneebudgetaire" required>
+      </div>
+      <div class="form-group">
+        <label for="coutLogiciel">coutLogiciel:</label>
+        <input type="text" class="form-control" id="coutLogiciel" name="coutLogiciel"  placeholder="coutLogiciel" [(ngModel)]="budget.coutLogiciel" required>
+      </div>
+      <div class="form-group">
+        <label for="coutMateriel">coutMateriel:</label>
+        <input type="text" class="form-control" id="coutMateriel" name="coutMateriel"  placeholder="coutMateriel" [(ngModel)]="budget.coutMateriel" required>
+      </div>
+      <div class="form-group">
+        <label for="coutEtudeServ">coutEtudeServ:</label>
+        <input type="text" class="form-control" id="coutEtudeServ" name="coutEtudeServ"  placeholder="coutEtudeServ" [(ngModel)]="budget.coutEtudeServ" required>
+      </div>
+      <div class="form-group">
+        <label for="budgetN">budgetN:</label>
+        <input type="text" class="form-control" id="budgetN" name="budgetN"  placeholder="budgetN" [(ngModel)]="budget.budgetN" required>
+      </div>
+      <div class="form-group">
+        <label for="budgetN1">budgetN1:</label>
+        <input type="text" class="form-control" id="budgetN1" name="budgetN1"  placeholder="budgetN1" [(ngModel)]="budget.budgetN1" required>
+      </div>
+      <div class="form-group">
+        <label for="budgetN2">budgetN2:</label>
+        <input type="text" class="form-control" id="budgetN2" name="budgetN2"  placeholder="budgetN2" [(ngModel)]="budget.budgetN2" required>
+      </div>
+      <div class="form-group">
+        <label for="budgetN3">budgetN3:</label>
+        <input type="text" class="form-control" id="budgetN3" name="budgetN3"  placeholder="budgetN3" [(ngModel)]="budget.budgetN3" required>
+      </div>
+      <button type="button" routerLink="/projets" routerLinkActive="active" class="btn btn-primary" (click)="onSubmit()" [disabled]="!voyageForm.form.valid">Submit</button>
+      <button type="button" routerLink="/projets" routerLinkActive="active" class="btn btn-primary" >Cancel</button>
+    </form>
+
+  </div>
+</div>

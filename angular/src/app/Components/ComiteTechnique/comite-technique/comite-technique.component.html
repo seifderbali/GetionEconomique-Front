@@ -1,0 +1,241 @@
+<div class="spacer"></div>
+<div class="spacer"></div>
+
+
+<div class="card my-5">
+  <div class="card-body">
+    <input type="text" [(ngModel)]="search" class="form-control" id="search" name="search" placeholder="Search.."
+           required #name="ngModel">
+    <td><button (click)="searchAction(search)" type="button" class="btn btn-primary" [disabled]="search.length==0">Search</button></td>
+    <form #myForm="ngForm" (submit)="templateForm()" novalidate>
+      <div class="custom-control custom-radio">
+        <input type="radio" name="option" value="Investissement" [(ngModel)]="selectedOption" [checked]=" 'checked' "> Investissement
+      </div>
+      <div class="custom-control custom-radio">
+        <input type="radio" name="option" value="Maintenance" [(ngModel)]="selectedOption"> Maintenance
+      </div>
+      <button type="submit" class="btn btn-primary">Type of budget</button>
+
+    </form><!-- Form ends -->
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">project status </th>
+        <th scope="col">year</th>
+        <th scope="col">Demand axis</th>
+        <th scope="col">request type</th>
+        <th scope="col">committee Observation</th>
+
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let u of comites | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
+        <td>{{ u.statutProjet }}</td>
+        <td>{{ u.annee }}</td>
+        <td>{{ u.axeDemande }}</td>
+        <td>{{ u.typeDemande }}</td>
+        <td>{{ u.observationComite }}</td>
+
+        <td><button (click)="deleteComite(u.id)" type="button" class="btn btn-primary btn-lg btn-floating"><fa-icon [icon]="faTrashCan"></fa-icon></button></td>
+        <td><button  routerLink="/comiteTechnique" type="button" class="btn btn-primary btn-lg btn-floating" data-toggle="modal" data-target="#exampleModal" (click)="edit(u)"><fa-icon [icon]="faPenToSquare"></fa-icon></button></td>
+        <td><button  routerLink="/comiteTechnique" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal3" (click)="findDateValidation(u)">Date Validation</button></td>
+        <td><button  routerLink="/comiteTechnique" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal4" (click)="findBudget(u)">Budget</button></td>
+      </tr>
+      </tbody>
+
+    </table>
+    <div class="mt-8 py-5 flex justify-center items-center">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+    <td><button [routerLink]="['/addcomiteTechnique',selectedOption]" type="button" class="btn btn-primary" [disabled]="!selectedOption">add Comite Technique</button></td>
+
+  </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update Forum</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #updateForm="ngForm" (ngSubmit)="updateComite()">
+            <div class="form-group">
+              <label for=annee>annee :</label>
+              <input type="date" #address [(ngModel)]="comite.annee" name="annee" id="annee"
+                     class="form-control" placeholder="annee">
+            </div>
+            <div class="form-group">
+              <label for="statutProjet">statutProjet :</label>
+              <input type="text" #address [(ngModel)]="comite.statutProjet" name="statutProjet" id="statutProjet"
+                     class="form-control" placeholder="statutProjet">
+            </div>
+            <div class="form-group">
+              <label for="axeDemande">axeDemande :</label>
+              <input type="text" #address [(ngModel)]="comite.axeDemande" name="axeDemande" id="axeDemande"
+                     class="form-control" placeholder="axeDemande">
+            </div>
+            <div class="form-group">
+              <label for="typeDemande">typeDemande :</label>
+              <input type="text" #address [(ngModel)]="comite.typeDemande" name="typeDemande" id="typeDemande"
+                     class="form-control" placeholder="typeDemande">
+            </div>
+            <div class="form-group">
+              <label for="observationComite">observationComite :</label>
+              <input type="text" #address [(ngModel)]="comite.observationComite" name="observationComite" id="observationComite"
+                     class="form-control" placeholder="observationComite">
+            </div>
+
+
+
+
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+
+            <div class="form-group">
+              <input type="submit" value="Update" class="btn btn-primary w-100">
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel3">Date Validation</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label>validationCC :</label>
+              <h2>{{datevalidation.validationCC}} </h2>
+
+
+            </div>
+            <div class="form-group">
+              <label>decisionComiteCC :</label>
+              <h2>{{datevalidation.decisionComiteCC}} </h2>
+
+
+            </div>
+            <div class="form-group">
+              <label>validationTech :</label>
+              <h2>{{datevalidation.validationTech}} </h2>
+
+
+            </div>
+            <div class="form-group">
+              <label>decisionComiteTech :</label>
+              <h2>{{ datevalidation.decisionComiteTech}} </h2>
+
+
+            </div>
+            <div class="form-group">
+              <label>validationTechFinanciaire  :</label>
+              <h2>{{datevalidation.validationTechFinanciaire}} </h2>
+
+
+            </div>
+            <div class="form-group">
+              <label>decisionComiteTechFin :</label>
+              <h2>{{datevalidation.decisionComiteTechFin}} </h2>
+            </div>
+
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel4">BUDGET</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label>Annee Budgetaire :</label>
+              <h2>{{budget.anneebudgetaire}}</h2>
+
+            </div>
+            <div class="form-group">
+              <label>Cout Etude Serv :</label>
+              <h2>{{budget.coutEtudeServ}}</h2>
+
+
+            </div>
+            <div class="form-group">
+              <label>Cout Logiciel :</label>
+              <h2>{{budget.coutLogiciel}}</h2>
+
+            </div>
+            <div class="form-group">
+              <label>Cout Materiel  :</label>
+              <h2>{{budget.coutMateriel}}</h2>
+
+
+            </div>
+            <div class="form-group">
+              <label>Budget N :</label>
+              <h2>{{budget.budgetN}}</h2>
+
+            </div>
+            <div class="form-group">
+              <label>Budget N1 :</label>
+              <h2>{{budget.budgetN1}}</h2>
+
+
+            </div>
+            <div class="form-group">
+              <label>Budget N2 :</label>
+              <h2>{{budget.budgetN2}}</h2>
+
+            </div>
+            <div class="form-group">
+              <label>Budget N3 :</label>
+              <h2>{{budget.budgetN3}}</h2>
+
+            </div>
+            <div class="form-group">
+
+            </div>
+
+
+          </form>
+        </div>
+
+
+
+
+
+      </div>
